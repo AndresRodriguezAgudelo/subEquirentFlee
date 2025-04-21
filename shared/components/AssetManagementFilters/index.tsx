@@ -41,7 +41,7 @@ const TableFilters: React.FC<TableFiltersProps> = ({
           {...commonProps}
           value={filters[config.id]}
           optionSelect={config.options}
-          onChangeSelect={(selectedOption) => {
+          onChangeSelect={selectedOption => {
             if (selectedOption) {
               onFilterChange(config.id, selectedOption.value);
             }
@@ -50,7 +50,7 @@ const TableFilters: React.FC<TableFiltersProps> = ({
       );
     }
 
-    const handleChange: ChangeHandler = async (e) => {
+    const handleChange: ChangeHandler = async e => {
       if (e && e.target) {
         onFilterChange(config.id, e.target.value);
       }
@@ -67,15 +67,20 @@ const TableFilters: React.FC<TableFiltersProps> = ({
   };
 
   return (
-    <div style={{ 
-      ...filterContainerStyle, 
-      width: '100%',
-      display: 'flex',
-      gap: '16px',
-      flexWrap: 'wrap'
-    }}>
-      {filterConfig.map((config) => (
-        <div key={config.id} style={{ flex: config.isBig ? '1 1 100%' : '1 1 auto' }}>
+    <div
+      style={{
+        ...filterContainerStyle,
+        width: '100%',
+        display: 'flex',
+        gap: '16px',
+        flexWrap: 'wrap',
+      }}
+    >
+      {filterConfig.map(config => (
+        <div
+          key={config.id}
+          style={{ flex: config.isBig ? '1 1 100%' : '1 1 auto' }}
+        >
           {renderFilter(config)}
         </div>
       ))}

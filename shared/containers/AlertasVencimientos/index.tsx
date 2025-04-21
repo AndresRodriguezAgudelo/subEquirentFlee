@@ -1,16 +1,14 @@
-
-import { Fragment } from 'react';
-import AssetManagementChards from '../../components/AssetManagementChards';
-import AssetManagementTable from '../../components/AssetManagementTable';
+import AssetManagementTable from '@/features/client/AssetFleet/components/AssetManagementTable';
+import AssetManagementChards from '@/shared/components/AssetManagementChards';
 
 import { LineSeparation } from './styled';
 
 export default function AlertasVencimientos() {
   return (
-    <Fragment>
+    <>
       <AssetManagementChards title="Alertas y Vencimientos" icon="bell-ring" />
       <LineSeparation />
       <AssetManagementTable nuevoActivo={false} />
-    </Fragment>
+    </>
   );
 }

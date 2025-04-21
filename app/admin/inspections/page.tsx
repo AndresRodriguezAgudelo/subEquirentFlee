@@ -1,4 +1,4 @@
-import Inspecciones from '@/features/asset-management/containers/Inspecciones';
+import Inspecciones from '@/features/inspections/containers/Inspecciones';
 
 export default function AssetManagement() {
   return <Inspecciones />;

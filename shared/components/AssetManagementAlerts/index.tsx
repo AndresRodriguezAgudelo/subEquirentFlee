@@ -6,27 +6,25 @@ import Icon from '@/shared/containers/Icons';
 import { Container, Header, CardsWrapper, Card } from './styled';
 
 interface AssetManagementAlertsProps {
-  title: string; 
-  icon: string;  
+  title: string;
+  icon: string;
   cards: number;
 }
 
-export default function AssetManagementChards({ 
-  title, 
-  icon, 
-  cards 
+export default function AssetManagementChards({
+  title,
+  icon,
+  cards,
 }: AssetManagementAlertsProps) {
   return (
     <Fragment>
       <Container>
-
         <Header>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Icon icon={icon} size={24} />
             <Text styleName="Heading 4">{title}</Text>
           </div>
         </Header>
-
 
         <CardsWrapper>
           {Array.from({ length: cards }).map((_, index) => (
@@ -35,7 +33,6 @@ export default function AssetManagementChards({
             </Card>
           ))}
         </CardsWrapper>
-
       </Container>
     </Fragment>
   );

@@ -3,17 +3,17 @@
 import React, { useState } from 'react';
 import {
   type ColumnDef,
-  useReactTable,
   getCoreRowModel,
-  type RowSelectionState,
+  useReactTable,
 } from '@tanstack/react-table';
-import { type CarRegister } from './makeData';
 
 import Icon from '@/shared/containers/Icons';
+import TableGrid from '@/shared/components/TableGrid';
+import TableList from '@/shared/components/TableList';
+
+import { type CarRegister } from './makeData';
 import { ContTable, GroupHeadersTable } from './styled';
 import Text from '../../components/Text';
-import TableList from '@/shared/components/TableList';
-import TableGrid from '@/shared/components/TableGrid';
 import styles from './table.module.css';
 
 interface BaseRow {

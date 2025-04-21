@@ -104,10 +104,12 @@ const filterConfig = [
 
 export default function VistaListadoRutinas() {
   const router = useRouter();
-  const [filters, setFilters] = useState<{ [key: string]: string }>({ search: '' });
+  const [filters, setFilters] = useState<{ [key: string]: string }>({
+    search: '',
+  });
 
   const handleFilterChange = (filterId: string, value: string) => {
-    setFilters((prev) => ({
+    setFilters(prev => ({
       ...prev,
       [filterId]: value,
     }));
@@ -149,20 +151,22 @@ export default function VistaListadoRutinas() {
 
   const filteredData = useMemo(() => {
     if (!filters.search) return mockData;
-    
-    return mockData.filter((item) =>
+
+    return mockData.filter(item =>
       item.rutina.toLowerCase().includes(filters.search.toLowerCase())
     );
   }, [filters.search]);
 
   return (
     <div style={{ padding: '24px' }}>
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center',
-        marginBottom: '24px'
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '24px',
+        }}
+      >
         <div style={{ flex: 0.3, marginLeft: '24px' }}>
           <TableFilters
             filters={filters}
@@ -175,7 +179,9 @@ export default function VistaListadoRutinas() {
           className="maintenance"
         >
           <Icon icon="plus" size={16} color="white" />
-          <Text styleName="Content Accent" color="white">Nueva Rutina</Text>
+          <Text styleName="Content Accent" color="white">
+            Nueva Rutina
+          </Text>
         </Button>
       </div>
 
@@ -186,12 +192,12 @@ export default function VistaListadoRutinas() {
         actionIcons={[
           {
             icon: 'edit',
-            onClick: (row) => console.log('Editar', row.id),
+            onClick: row => console.log('Editar', row.id),
             color: '#666666',
           },
           {
             icon: 'trash',
-            onClick: (row) => console.log('Eliminar', row.id),
+            onClick: row => console.log('Eliminar', row.id),
             color: '#666666',
           },
         ]}

@@ -19,39 +19,47 @@ import {
   FormSection,
   FormBlock,
   SelectBlock,
-  TablePlaceholder
+  TablePlaceholder,
 } from './styled';
 
 interface FormularioAlertaVistaProps {
   percentage?: number;
 }
 
-const DynamicChart = dynamic(() => Promise.resolve(({ progress }: { progress: number }) => (
-  <div style={{ position: 'relative', width: '70px', height: '70px' }}>
-    <RadialBarChart
-      width={70}
-      height={70}
-      data={[{ value: 100, fill: progress > 30 ? '#50ba50' : '#F44336' }]}
-      startAngle={300}
-      endAngle={-60}
-      innerRadius={25}
-      outerRadius={35}
-    >
-      <PolarGrid gridType="circle" radialLines={false} />
-      <RadialBar dataKey="value" background cornerRadius={30} />
-    </RadialBarChart>
-    <div style={{ 
-      position: 'absolute', 
-      top: '50%', 
-      left: '50%', 
-      transform: 'translate(-50%, -50%)'
-    }}>
-      <Icon icon="bell-ring" size={35} color="#011726" />
-    </div>
-  </div>
-)), { ssr: false });
+const DynamicChart = dynamic(
+  () =>
+    Promise.resolve(({ progress }: { progress: number }) => (
+      <div style={{ position: 'relative', width: '70px', height: '70px' }}>
+        <RadialBarChart
+          width={70}
+          height={70}
+          data={[{ value: 100, fill: progress > 30 ? '#50ba50' : '#F44336' }]}
+          startAngle={300}
+          endAngle={-60}
+          innerRadius={25}
+          outerRadius={35}
+        >
+          <PolarGrid gridType="circle" radialLines={false} />
+          <RadialBar dataKey="value" background cornerRadius={30} />
+        </RadialBarChart>
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        >
+          <Icon icon="bell-ring" size={35} color="#011726" />
+        </div>
+      </div>
+    )),
+  { ssr: false }
+);
 
-export default function FormularioAlertaVista({ percentage = 0 }: FormularioAlertaVistaProps) {
+export default function FormularioAlertaVista({
+  percentage = 0,
+}: FormularioAlertaVistaProps) {
   return (
     <>
       {/* Sección Alerta */}
@@ -61,11 +69,13 @@ export default function FormularioAlertaVista({ percentage = 0 }: FormularioAler
           <span />
         </ContainerTitleLine>
 
-        <div style={{ 
-          border: '1px solid #E0E0E0', 
-          borderRadius: '8px', 
-          padding: '16px' 
-        }}>
+        <div
+          style={{
+            border: '1px solid #E0E0E0',
+            borderRadius: '8px',
+            padding: '16px',
+          }}
+        >
           <AlertContainer>
             <DynamicChart progress={percentage} />
             <Text styleName="Heading 4">SOAT</Text>
@@ -80,11 +90,13 @@ export default function FormularioAlertaVista({ percentage = 0 }: FormularioAler
               <Text styleName="Body Medium">01/01/2025</Text>
             </DateGroup>
             <VerticalSeparator />
-            <div style={{
-              background: '#E0E0E0',
-              padding: '8px 16px',
-              borderRadius: '4px'
-            }}>
+            <div
+              style={{
+                background: '#E0E0E0',
+                padding: '8px 16px',
+                borderRadius: '4px',
+              }}
+            >
               <Text styleName="Body Medium">Días</Text>
             </div>
             <SwitchContainer>
@@ -139,18 +151,14 @@ export default function FormularioAlertaVista({ percentage = 0 }: FormularioAler
               selected={null}
             />
           </FormBlock>
-          <InputUploadDocument
-            onFileSelect={() => {}}
-          />
+          <InputUploadDocument onFileSelect={() => {}} />
         </FormSection>
 
         <SelectBlock>
           <Select
             label="Tipo de documento"
             addNewVariable={false}
-            optionSelect={[
-              { value: 'soat', label: 'SOAT' }
-            ]}
+            optionSelect={[{ value: 'soat', label: 'SOAT' }]}
             value="soat"
             onChangeSelect={() => {}}
           />

@@ -1,25 +1,24 @@
-"use client"
+'use client';
 
 import { useState, useMemo, useEffect } from 'react';
 import Text from '@/shared/components/Text';
 import Icon from '@/shared/containers/Icons';
 import Select from '@/shared/components/Select';
 import dynamic from 'next/dynamic';
-import { 
-  ContChard, 
-  ContChards, 
-  ContTitle, 
-  HeaderContent, 
+import {
+  ContChard,
+  ContChards,
+  ContTitle,
+  HeaderContent,
   SelectContainer,
-  TitleContainer 
+  TitleContainer,
 } from './styled';
-import { TrendingUp } from "lucide-react"
+import { TrendingUp } from 'lucide-react';
 
 // Importar el componente completo de recharts de forma dinámica
-const RechartsComponent = dynamic(
-  () => import('./rechartsWrapper'),
-  { ssr: false }
-);
+const RechartsComponent = dynamic(() => import('./rechartsWrapper'), {
+  ssr: false,
+});
 
 import {
   Card,
@@ -27,7 +26,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/shared/components/Card/CardComponent"
+} from '@/shared/components/Card/CardComponent';
 
 import testData from './testData.json';
 
@@ -41,7 +40,10 @@ interface AssetManagementChardsProps {
   icon: string;
 }
 
-export default function AssetManagementChards({ title, icon }: AssetManagementChardsProps) {
+export default function AssetManagementChards({
+  title,
+  icon,
+}: AssetManagementChardsProps) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -50,22 +52,36 @@ export default function AssetManagementChards({ title, icon }: AssetManagementCh
 
   const [selectedTime, setSelectedTime] = useState<string>('2024-1');
   const [selectedStatus, setSelectedStatus] = useState<string>('actual');
-  const [selectedDistribution, setSelectedDistribution] = useState<string>('2024-01');
+  const [selectedDistribution, setSelectedDistribution] =
+    useState<string>('2024-01');
 
-  const handleSelectChange = (setter: (value: string) => void) => (option: SelectOption) => {
-    setter(option.value);
-  };
+  const handleSelectChange =
+    (setter: (value: string) => void) => (option: SelectOption) => {
+      setter(option.value);
+    };
 
   const verticalChartData = useMemo(() => {
-    return testData.chartDataBySemester[selectedTime as keyof typeof testData.chartDataBySemester] || testData.chartDataBySemester['2024-1'];
+    return (
+      testData.chartDataBySemester[
+        selectedTime as keyof typeof testData.chartDataBySemester
+      ] || testData.chartDataBySemester['2024-1']
+    );
   }, [selectedTime]);
 
   const pieChartData = useMemo(() => {
-    return testData.pieChartDataByStatus[selectedStatus as keyof typeof testData.pieChartDataByStatus] || testData.pieChartDataByStatus['actual'];
+    return (
+      testData.pieChartDataByStatus[
+        selectedStatus as keyof typeof testData.pieChartDataByStatus
+      ] || testData.pieChartDataByStatus['actual']
+    );
   }, [selectedStatus]);
 
   const horizontalChartData = useMemo(() => {
-    return testData.horizontalChartDataByMonth[selectedDistribution as keyof typeof testData.horizontalChartDataByMonth] || testData.horizontalChartDataByMonth['2024-01'];
+    return (
+      testData.horizontalChartDataByMonth[
+        selectedDistribution as keyof typeof testData.horizontalChartDataByMonth
+      ] || testData.horizontalChartDataByMonth['2024-01']
+    );
   }, [selectedDistribution]);
 
   const getIncremento = useMemo(() => {
@@ -119,7 +135,8 @@ export default function AssetManagementChards({ title, icon }: AssetManagementCh
             </CardContent>
             <CardFooter className="flex-col items-start gap-2 text-sm">
               <div className="flex gap-2 font-medium leading-none">
-                Incremento del {getIncremento}% este mes <TrendingUp className="h-4 w-4" />
+                Incremento del {getIncremento}% este mes{' '}
+                <TrendingUp className="h-4 w-4" />
               </div>
               <div className="leading-none text-muted-foreground">
                 Evolución mensual del valor de activos

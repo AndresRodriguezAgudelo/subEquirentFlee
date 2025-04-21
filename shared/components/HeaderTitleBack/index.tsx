@@ -18,8 +18,8 @@ export default function HeaderTitleBack(props: Readonly<Props>) {
 
   const handleBack = () => {
     if (onBack) return onBack();
-    const path = pathname.split('/');
-    const lastPath = path.slice(0, path.length - 1).join('/');
+    const path = pathname?.split('/');
+    const lastPath = path?.slice(0, path?.length - 1)?.join('/');
     return push(`${lastPath}`);
   };
 

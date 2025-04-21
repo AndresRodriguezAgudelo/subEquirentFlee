@@ -1,0 +1,71 @@
+{
+  "pieGaugeChartDataBySemester": {
+    "6-meses": [
+      { "name": "Activas", "value": 200, "fill": "#EBE682" },
+      { "name": "Inactivas", "value": 925, "fill": "#8FB7D6" }
+
+    ],
+    "12-meses": [
+      { "name": "Activas", "value": 250, "fill": "#EBE682" },
+      { "name": "Inactivas", "value": 875, "fill": "#8FB7D6" }
+    ],
+    "18-meses": [
+      { "name": "Activas", "value": 450, "fill": "#EBE682" },
+      { "name": "Inactivas", "value": 725, "fill": "#8FB7D6" }
+    ]
+  },
+  "pieGaugeChart2Data": {
+    "30-dias": [
+      { "name": "Actual", "value": 800, "fill": "#5991BE" },
+      { "name": "Restantes", "value": 400, "fill": "#EBEBEF" }
+
+    ],
+    "45-dias": [
+      { "name": "Actual", "value": 900, "fill": "#5991BE" },
+      { "name": "Restantes", "value": 300, "fill": "#EBEBEF" }
+    ],
+    "60-dias": [
+      { "name": "Actual", "value": 1000, "fill": "#5991BE" },
+      { "name": "Restantes", "value": 200, "fill": "#EBEBEF" }
+    ]
+  },
+  
+
+  "horizontalChartDataByMonth": {
+    "2024-01": [
+      { "categoria": "Equipos", "valor": 850, "fill": "hsl(var(--chart-1))" },
+      { "categoria": "Vehículos", "valor": 650, "fill": "hsl(var(--chart-2))" },
+      { "categoria": "Inmuebles", "valor": 450, "fill": "hsl(var(--chart-3))" },
+      { "categoria": "Otros", "valor": 250, "fill": "hsl(var(--chart-4))" }
+    ],
+    "2023-12": [
+      { "categoria": "Equipos", "valor": 600, "fill": "hsl(var(--chart-1))" },
+      { "categoria": "Vehículos", "valor": 400, "fill": "hsl(var(--chart-2))" },
+      { "categoria": "Inmuebles", "valor": 300, "fill": "hsl(var(--chart-3))" },
+      { "categoria": "Otros", "valor": 150, "fill": "hsl(var(--chart-4))" }
+    ],
+    "2023-11": [
+      { "categoria": "Equipos", "valor": 400, "fill": "hsl(var(--chart-1))" },
+      { "categoria": "Vehículos", "valor": 250, "fill": "hsl(var(--chart-2))" },
+      { "categoria": "Inmuebles", "valor": 200, "fill": "hsl(var(--chart-3))" },
+      { "categoria": "Otros", "valor": 100, "fill": "hsl(var(--chart-4))" }
+    ]
+  },
+  "options": {
+    "timeOptions": [
+      { "value": "6-meses", "label": "6 meses" },
+      { "value": "12-meses", "label": "12 meses" },
+      { "value": "18-meses", "label": "18 meses" }
+    ],
+    "timeOptions2": [
+      { "value": "30-dias", "label": "15 días" },
+      { "value": "45-dias", "label": "45 días" },
+      { "value": "60-dias", "label": "60 días" }
+    ],
+    "distributionOptions": [
+      { "value": "2024-01", "label": "Enero 2024" },
+      { "value": "2023-12", "label": "Diciembre 2023" },
+      { "value": "2023-11", "label": "Noviembre 2023" }
+    ]
+  }
+}

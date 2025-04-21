@@ -20,7 +20,7 @@ export const IconContainer = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 1px solid #e0e0e0;
   padding-bottom: 4px;
 `;
 

@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
   CartesianGrid,
-} from "recharts";
+} from 'recharts';
 
 interface RechartsComponentProps {
   type: 'vertical-bar' | 'horizontal-bar' | 'pie';
@@ -18,7 +18,12 @@ interface RechartsComponentProps {
   height: number;
 }
 
-const RechartsComponent = ({ type, data, width, height }: RechartsComponentProps) => {
+const RechartsComponent = ({
+  type,
+  data,
+  width,
+  height,
+}: RechartsComponentProps) => {
   if (type === 'vertical-bar') {
     return (
       <BarChart

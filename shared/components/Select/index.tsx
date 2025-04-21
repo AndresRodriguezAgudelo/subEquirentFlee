@@ -13,7 +13,7 @@ import {
 import Icon from '@/shared/containers/Icons';
 import Text from '@/shared/components/Text';
 import Tooltip from '../TooltipBox';
-import NuevaVariableSelect from '@/features/asset-management/containers/NuevaVariableSelect';
+import NuevaVariableSelect from '@/shared/containers/NuevaVariableSelect';
 import {
   ContSelectStyle,
   ContLabelStyle,

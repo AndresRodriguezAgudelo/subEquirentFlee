@@ -23,7 +23,15 @@ export default function NavBarRight() {
   };
   const pathname = usePathname();
 
-  if (pathname?.split('/')?.length > 3) return null;
+  if (!pathname) return null;
+
+  // Rutas excluidas para este componente
+  const excludedRoutes = ['/admin/login', '/admin/forgotPassword', '/admin/changePassword'];
+
+  // if (pathname && pathname.split('/')?.length > 3) return null;
+  if (excludedRoutes.includes(pathname)) {
+    return null;
+  }
 
   return (
     <NavRightStyle className={open ? 'open' : ''}>
@@ -46,8 +54,6 @@ export default function NavBarRight() {
             width={163}
             height={42}
           />
-
-          <Icon icon="menu" size={32} color="#FFFFFF" />
         </HeaderNavStyle>
         <ListNav onClick={handleOpen}>
           <ListItem
@@ -90,7 +96,7 @@ export default function NavBarRight() {
             </Text>
           </ListItem>
 
-          <ListItem href="/admin/inspecciones">
+          <ListItem href="/admin/inspections">
             <Icon icon="clipboard-list" size={32} color="#FFFFFF" />
             <Text styleName={'Caption Accent / SemiBold'}>
               {' '}
@@ -98,7 +104,7 @@ export default function NavBarRight() {
             </Text>
           </ListItem>
 
-          <ListItem href="/admin/inspecciones">
+          <ListItem href="/admin/inspections">
             <Icon icon="wrench" size={32} color="#FFFFFF" />
             <Text styleName={'Caption Accent / SemiBold'}>
               {' '}
