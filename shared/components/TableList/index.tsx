@@ -14,16 +14,15 @@ import { TableContainer } from './styled';
 import { type CarRegister } from '@/shared/containers/GeneralTable/makeData';
 
 interface TableListProps<T> {
-  columns: ColumnDef<T>[];
+  /** Puedes pasar columns, customColumns o column. Se usará el primero definido. */
+  columns?: ColumnDef<T>[];
+  customColumns?: ColumnDef<T>[];
+  column?: ColumnDef<T>[];
   data: T[];
   pageSize?: number;
   onRowClick?: (item: T) => void;
   onResponsableClick?: (vehicle: CarRegister) => void;
   showActions?: boolean;
-  customColumns?: {
-    header: string;
-    accessor: keyof T;
-  }[];
   actionIcons?: {
     icon: string;
     onClick: (item: T) => void;
@@ -38,17 +37,20 @@ type BaseItem = {
 
 export default function TableList<T extends BaseItem>({
   columns,
+  customColumns,
+  column,
   data,
   pageSize = 10,
   onRowClick,
   onResponsableClick,
   showActions = false,
-  customColumns,
   actionIcons,
 }: TableListProps<T>) {
+  // Prioridad: columns > customColumns > column
+  const resolvedColumns = columns || customColumns || column;
   const table = useReactTable({
     data,
-    columns,
+    columns: resolvedColumns || [],
     getCoreRowModel: getCoreRowModel(),
   });
 
