@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  perspective: 1000px;
+}
+
+.flipping {
+  animation: flip 0.6s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}

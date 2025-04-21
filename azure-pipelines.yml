@@ -1,0 +1,113 @@
+trigger:
+- main
+
+pr:
+- feature/*
+- release/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  cliProjectKey: '776d9d0ddb3eef8227a5bdcbe7c964f4aa1fb074'
+  cliProjectName: 'equisoft-frontend-web'
+
+stages:
+  - stage: Build
+    jobs:
+      - job: BuildAndAnalyze
+        steps:
+          # Instalar Node.js
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '20.x'
+            displayName: 'Install Node.js'
+
+          # Instalar todas las dependencias, incluyendo las de desarrollo
+          # Usa `npm ci` para instalar dependencias exactas
+          - script: |
+              npm i --prefer-offline --no-audit 
+            displayName: 'Install dependencies'
+
+          # Construir el proyecto
+          - script: |
+              npm run build
+            displayName: 'Build project'
+
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)'
+              Contents: 'web.config'  # Asegúrate de tener este archivo en tu proyecto
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/drop'
+            displayName: 'Copy web.config'  
+
+          # Mover todos los archivos necesarios a la carpeta de artefactos
+          - script: |
+              mkdir -p $(Build.ArtifactStagingDirectory)/drop
+              cp -r .next public package.json package-lock.json next.config.js $(Build.ArtifactStagingDirectory)/drop            
+            displayName: 'Move build files to artifact directory'
+
+          # Crear archivo ZIP del artefacto
+          #- script: |
+          #    cd $(Build.ArtifactStagingDirectory)/drop
+          #    zip -r ../app.zip .
+          #  displayName: 'Create ZIP package'
+
+          # Crear ZIP
+          - task: ArchiveFiles@2
+            inputs:
+              rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/drop'
+              includeRootFolder: false
+              archiveType: 'zip'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/app.zip'
+            displayName: 'Create deployment package'
+
+          # Publicar el archivo ZIP
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)/app.zip'
+              ArtifactName: 'drop'
+              #publishLocation: 'Container'
+
+  - stage: Deploy
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+      - deployment: DeployWebApp
+        environment: production
+        pool:
+          vmImage: 'ubuntu-latest'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                # Descargar el artefacto ZIP generado en la etapa Build
+                - task: DownloadBuildArtifacts@0
+                  inputs:
+                    # buildType: 'current'
+                    # downloadType: 'single'
+                    artifactName: 'drop'
+                    downloadPath: '$(Build.ArtifactStagingDirectory)'
+
+                # Desplegar en Azure App Service desde el archivo ZIP
+                - task: AzureWebApp@1
+                  displayName: 'Deploy to Azure App Service'
+                  inputs:
+                    azureSubscription: 'ConexionFleet_QA'
+                    appName: 'EquisoftFleet-Codigo-Dev'
+                    package: '$(Build.ArtifactStagingDirectory)/drop/app.zip'
+                    runtimeStack: 'NODE|20-lts'
+                    #appSettings: |
+                    #  -name WEBSITE_RUN_FROM_PACKAGE -value 1
+                    appSettings: |
+                      [
+                        {
+                          "name": "WEBSITE_RUN_FROM_PACKAGE",
+                          "value": "1"
+                        },
+                        {
+                          "name": "WEBSITE_NODE_DEFAULT_VERSION",
+                          "value": "20.x"
+                        }
+                      ]
+                    startUpCommand: 'npm start'

@@ -1,0 +1,84 @@
+{
+  "vencimientos": [
+    {
+      "id": 1,
+      "nombreVencimiento": "SOAT",
+      "vigencia": "12 meses",
+      "inicioAlerta": "3 meses antes",
+      "segundaAlerta": "1 mes antes",
+      "tiempoCriticoGestion": "1 semana",
+      "flujoTrabajo": "Estándar",
+      "tipoDocumento": "SOAT"
+    },
+    {
+      "id": 2,
+      "nombreVencimiento": "Revisión Técnico Mecánica",
+      "vigencia": "6 meses",
+      "inicioAlerta": "2 meses antes",
+      "segundaAlerta": "2 semanas antes",
+      "tiempoCriticoGestion": "3 días",
+      "flujoTrabajo": "Prioritario",
+      "tipoDocumento": "RTM"
+    },
+    {
+      "id": 3,
+      "nombreVencimiento": "Seguro Todo Riesgo",
+      "vigencia": "12 meses",
+      "inicioAlerta": "1 mes antes",
+      "segundaAlerta": "2 semanas antes",
+      "tiempoCriticoGestion": "5 días",
+      "flujoTrabajo": "Estándar",
+      "tipoDocumento": "Seguro"
+    },
+    {
+      "id": 4,
+      "nombreVencimiento": "Licencia de Conducción",
+      "vigencia": "24 meses",
+      "inicioAlerta": "1 mes antes",
+      "segundaAlerta": "1 semana antes",
+      "tiempoCriticoGestion": "2 días",
+      "flujoTrabajo": "Urgente",
+      "tipoDocumento": "Licencia"
+    },
+    {
+      "id": 5,
+      "nombreVencimiento": "Tarjeta de Propiedad",
+      "vigencia": "12 meses",
+      "inicioAlerta": "2 meses antes",
+      "segundaAlerta": "1 mes antes",
+      "tiempoCriticoGestion": "1 semana",
+      "flujoTrabajo": "Estándar",
+      "tipoDocumento": "Tarjeta"
+    },
+    {
+      "id": 6,
+      "nombreVencimiento": "Póliza de Responsabilidad Civil",
+      "vigencia": "24 meses",
+      "inicioAlerta": "3 meses antes",
+      "segundaAlerta": "1 mes antes",
+      "tiempoCriticoGestion": "2 semanas",
+      "flujoTrabajo": "Prioritario",
+      "tipoDocumento": "Póliza"
+    },
+    {
+      "id": 7,
+      "nombreVencimiento": "Certificado de Gases",
+      "vigencia": "6 meses",
+      "inicioAlerta": "2 meses antes",
+      "segundaAlerta": "2 semanas antes",
+      "tiempoCriticoGestion": "4 días",
+      "flujoTrabajo": "Urgente",
+      "tipoDocumento": "Certificado"
+    },
+    {
+      "id": 8,
+      "nombreVencimiento": "Permiso de Circulación",
+      "vigencia": "36 meses",
+      "inicioAlerta": "6 meses antes",
+      "segundaAlerta": "2 meses antes",
+      "tiempoCriticoGestion": "2 semanas",
+      "flujoTrabajo": "Estándar",
+      "tipoDocumento": "Permiso"
+    }
+  ]
+}
