@@ -128,7 +128,7 @@ export default function FormDocumentation() {
         <RightBlock>
           <Text styleName="Heading 5">Documentos</Text>
           <TableList
-            customColumns={documentColumns}
+            columns={documentColumns}
             showActions={true}
             actionIcons={documentActions}
             data={[
