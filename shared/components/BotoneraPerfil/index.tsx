@@ -24,7 +24,7 @@ export default function BotoneraPerfil() {
           Perfil
         </Text>
         <Text color="black" styleName="Caption Standard">
-          Santiago Lopera
+          Andres F. Rodriguez
         </Text>
       </ProfileInfo>
     </Container>
