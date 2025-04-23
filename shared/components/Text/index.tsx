@@ -8,6 +8,7 @@ interface TextProps {
   children: ReactNode;
   color?: string;
   style?: CSSProperties;
+  onClick?: () => void; 
 }
 
 export default function Text(props: Readonly<TextProps>) {
@@ -34,6 +35,7 @@ export default function Text(props: Readonly<TextProps>) {
         ...style,
         color: color || textStyle?.color || 'rgba(0, 0, 0, 1)', //color recibido, luego el del estilo, y finalmente negro
       }}
+      onClick={props.onClick}
     >
       {children}
     </Component>

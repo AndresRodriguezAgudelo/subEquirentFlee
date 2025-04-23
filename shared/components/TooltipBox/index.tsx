@@ -24,7 +24,7 @@ const Tooltip: React.FC<TooltipProps> = ({ data }) => {
           cursor: 'pointer',
         }}
       >
-        <Icon size={16} icon="help-circle" />
+        <Icon size={16} icon="info" />
       </div>
 
       {/* Tooltip */}
