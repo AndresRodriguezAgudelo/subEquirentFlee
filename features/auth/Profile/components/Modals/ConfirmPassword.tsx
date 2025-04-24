@@ -6,6 +6,7 @@ import InputText from '@/shared/components/InputText';
 import { type ChangeHandler } from 'react-hook-form';
 import { ActionIcon, FormInputWrapper } from '../ProfileClient/styled';
 import Icon from '@/shared/containers/Icons';
+import { useRouter } from 'next/navigation';
 
 export const ConfirmPassword = ({
   isOpen,
@@ -14,6 +15,7 @@ export const ConfirmPassword = ({
   isOpen: boolean;
   onClose: () => void;
 }) => {
+  const router = useRouter();
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const closeModal = () => onClose();
@@ -38,7 +40,7 @@ export const ConfirmPassword = ({
       button1Style={true}
       button2Style={false}
       onButton1Click={closeModal}
-      onButton2Click={closeModal}
+      onButton2Click={() => { router.push('/admin/profile/changePassword') }}
     >
       <div style={{ width: '460px', padding: '20px' }}>
         <Text

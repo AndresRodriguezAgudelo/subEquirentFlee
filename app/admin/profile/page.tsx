@@ -1,5 +1,5 @@
 
-import { ProfileClientTemplate } from '@/features/auth/Profile/container/ProfileClient'
+import { ProfileClientTemplate } from '@/features/auth/Profile/container/ProfileTemplate'
 import React from 'react'
 
 const Profile = () => {
