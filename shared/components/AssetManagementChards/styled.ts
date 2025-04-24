@@ -18,15 +18,19 @@ export const ContTitle = styled.div`
 
 export const ContChards = styled.div`
   margin-top: 32px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 24px;
+  width: 100%;
   min-height: 350px;
 `;
 
 export const ContChard = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1 1 0;
+  min-width: 260px;
+  max-width: 100%;
   padding: 24px;
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 1);

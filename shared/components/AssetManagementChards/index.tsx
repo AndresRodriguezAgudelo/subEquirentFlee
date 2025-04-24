@@ -5,6 +5,7 @@ import Text from '@/shared/components/Text';
 import Icon from '@/shared/containers/Icons';
 import Select from '@/shared/components/Select';
 import dynamic from 'next/dynamic';
+import { ResponsiveContainer } from 'recharts';
 import {
   ContChard,
   ContChards,
@@ -124,15 +125,16 @@ export default function AssetManagementChards({
               </HeaderContent>
             </CardHeader>
             <CardContent>
-              {isClient && (
-                <RechartsComponent
-                  type="vertical-bar"
-                  data={verticalChartData}
-                  width={400}
-                  height={300}
-                />
-              )}
-            </CardContent>
+  {isClient && (
+    <ResponsiveContainer width="100%" height={300}>
+      <RechartsComponent
+        type="vertical-bar"
+        data={verticalChartData}
+        height={300}
+      />
+    </ResponsiveContainer>
+  )}
+</CardContent>
             <CardFooter className="flex-col items-start gap-2 text-sm">
               <div className="flex gap-2 font-medium leading-none">
                 Incremento del {getIncremento}% este mes{' '}
@@ -165,15 +167,16 @@ export default function AssetManagementChards({
               </HeaderContent>
             </CardHeader>
             <CardContent>
-              {isClient && (
-                <RechartsComponent
-                  type="pie"
-                  data={pieChartData}
-                  width={400}
-                  height={300}
-                />
-              )}
-            </CardContent>
+  {isClient && (
+    <ResponsiveContainer width="100%" height={300}>
+      <RechartsComponent
+        type="pie"
+        data={pieChartData}
+        height={300}
+      />
+    </ResponsiveContainer>
+  )}
+</CardContent>
             <CardFooter className="flex-col items-start gap-2 text-sm">
               <div className="leading-none text-muted-foreground">
                 Distribución por estado de los activos
@@ -202,15 +205,16 @@ export default function AssetManagementChards({
               </HeaderContent>
             </CardHeader>
             <CardContent>
-              {isClient && (
-                <RechartsComponent
-                  type="horizontal-bar"
-                  data={horizontalChartData}
-                  width={400}
-                  height={300}
-                />
-              )}
-            </CardContent>
+  {isClient && (
+    <ResponsiveContainer width="100%" height={300}>
+      <RechartsComponent
+        type="horizontal-bar"
+        data={horizontalChartData}
+        height={300}
+      />
+    </ResponsiveContainer>
+  )}
+</CardContent>
             <CardFooter className="flex-col items-start gap-2 text-sm">
               <div className="leading-none text-muted-foreground">
                 Mostrando la distribución total de activos

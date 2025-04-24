@@ -14,7 +14,7 @@ import {
 interface RechartsComponentProps {
   type: 'vertical-bar' | 'horizontal-bar' | 'pie';
   data: any[];
-  width: number;
+  width?: number;
   height: number;
 }
 
@@ -27,7 +27,7 @@ const RechartsComponent = ({
   if (type === 'vertical-bar') {
     return (
       <BarChart
-        width={width}
+        {...(width ? { width } : {})}
         height={height}
         data={data}
         layout="vertical"
@@ -50,7 +50,10 @@ const RechartsComponent = ({
 
   if (type === 'pie') {
     return (
-      <PieChart width={width} height={height}>
+      <PieChart
+        {...(width ? { width } : {})}
+        height={height}
+      >
         <Pie
           data={data}
           cx={200}
@@ -74,7 +77,7 @@ const RechartsComponent = ({
   if (type === 'horizontal-bar') {
     return (
       <BarChart
-        width={width}
+        {...(width ? { width } : {})}
         height={height}
         data={data}
         margin={{
