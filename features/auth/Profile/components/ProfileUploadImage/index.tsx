@@ -24,7 +24,7 @@ const ProfileImageUploader: React.FC<ProfileImageUploaderProps> = ({
       const reader = new FileReader();
       reader.onloadend = () => {
         onChange(reader.result as string);
-        setIsModalOpen(false); // Close modal after upload
+        setIsModalOpen(false); 
       };
       reader.readAsDataURL(file);
     }

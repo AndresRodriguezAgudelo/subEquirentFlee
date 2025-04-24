@@ -1,20 +1,22 @@
 // Función para verificar credenciales directamente
 export const verifyCredentials = (username: string, password: string) => {
-
-  if (username === 'admin' && password === '123123') {
+  if (
+    (username === 'admin' && password === '123123') ||
+    (username === 'client' && password === '123123')
+  ) {
     return {
       success: true,
       data: {
         message: 'Login exitoso',
-        user: { username }
-      }
+        user: { username },
+      },
     };
   } else {
     return {
       success: false,
       data: {
-        message: 'Credenciales incorrectas'
-      }
+        message: 'Credenciales incorrectas',
+      },
     };
   }
 };
@@ -31,9 +33,9 @@ export const loginUser = async (username: string, password: any) => {
     });
 
     const data = await response.json();
-
     if (response.ok) {
-      return { success: true, data }; 
+      localStorage.setItem('role',data.user.username);
+      return { success: true, data };
     } else {
       throw new Error(data.message || 'Error en el login');
     }

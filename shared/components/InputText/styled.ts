@@ -12,6 +12,8 @@ export const ContInput = styled.div`
   background-color: transparent;
   width: 100%;
   max-width: 100%;
+  display: flex;
+  flex-direction: column;
   > span {
     color: rgba(131, 131, 131, 1) !important;
   }
@@ -57,19 +59,24 @@ export const Container = styled.div`
 
 export const EyeContainer = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   padding: 0px 5px;
-  height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  color: red;
-  stroke: #76767c;
+  color: #76767c;
+  z-index: 10;
 `;
 
 export const Eye = styled.button`
-  background: transparent;
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
   border: none;
   padding: 0;
+  z-index: 100;
+  cursor: pointer;
 `;

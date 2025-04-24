@@ -18,7 +18,7 @@ type InputTextProps = {
   name?: string;
   onChange?: ChangeHandler;
   onBlur?: ChangeHandler;
-  type?: 'password' | 'date' | 'number';
+  type?: 'password' | 'date' | 'number' | 'text';
   maxNum?: number;
   hasErrors?: boolean;
   value?: string;
@@ -27,16 +27,22 @@ type InputTextProps = {
   autoComplete?: string;
   description?: string;
   tooltipData?: string;
+  showToggleIcon?: boolean;
 };
 
 const InputText = forwardRef<HTMLInputElement, InputTextProps>(
   function InputText(props, ref) {
-    const [showPassword, setShowPassword] = useState(false);
+    const [showContent, setShowContent] = useState(false);
+    const isPassword = props.type === 'password';
+    
+    // Determinar si debe mostrar el icono basado en:
+    // 1. Si es tipo password o showToggleIcon está activado
+    // 2. Si hay un valor en el input
+    const hasValue = !!props.value && props.value.length > 0;
+    const shouldShowIcon = (isPassword || props.showToggleIcon) && hasValue;
+
     return (
-      <Container
-      // hasErrors={props.hasErrors}
-      // disabled={props?.disabled ?? false}
-      >
+      <Container>
         {!!props?.label && (
           <ContainerLabel>
             <Text styleName={'Highligth Accent'} as={'label'}>
@@ -54,30 +60,23 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
             value={props.value}
             {...(props.type === 'number'
               ? {
-                  // onKeyDown: e => FilterInputNumber(e),
-                  // onPaste: e => handlePasteInputNumber(e),
                   onChange: props.onChange,
                 }
               : { onChange: props.onChange })}
             placeholder={props.placeholder}
             type={
-              props.type === 'password'
-                ? showPassword
-                  ? 'text'
-                  : 'password'
-                : props.type
+              shouldShowIcon && !showContent ? 'password' : props.type || 'text'
             }
-            // hasErrors={props.hasErrors}
             disabled={props?.disabled ?? false}
             autoComplete={props?.autoComplete}
           />
           {props?.description && (
             <Text styleName={'Caption Standard'}>{props.description}</Text>
           )}
-          {props.type === 'password' && (
+          {shouldShowIcon && (
             <EyeContainer>
-              <Eye onClick={() => setShowPassword(s => !s)} type="button">
-                {showPassword ? (
+              <Eye onClick={() => setShowContent((s) => !s)} type="button">
+                {showContent ? (
                   <Icon size={25} icon="eye_closed" />
                 ) : (
                   <Icon size={25} icon="eye_open" />

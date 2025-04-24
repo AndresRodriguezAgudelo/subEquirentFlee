@@ -11,16 +11,40 @@ import {
   FormInputWrapper,
   ActionIcon,
 } from './styled';
-import ProfileImageUploader from './ProfileUploadImage';
-import ProfileInfoCard from './ProfileInfoCard';
-import { permissions } from '../Utils/permissions';
+import ProfileImageUploader from '../ProfileUploadImage';
+import ProfileInfoCard from '../ProfileInfoCard';
+import { permissions } from '../../Utils/permissions';
+import { EditName } from '../Modals/EditName';
+import { ConfirmPassword } from '../Modals/ConfirmPassword';
+
 
 export const ProfileClient = () => {
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [isOpenName, setIsOpenName] = useState(false);
+  const [isOpenConfirmPassword, setIsOpenConfirmPassword] = useState(false);
+  const closeModal = () => {
+    setIsOpenName(false);
+    setIsOpenConfirmPassword(false);
+  };
+  const [visibility, setVisibility] = useState<Record<string, boolean>>({
+    company: false,
+    nit: false,
+    address: false,
+    phone: false,
+  });
+
+  const toggleVisibility = (key: string) => {
+    setVisibility((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  const getType = (key: string) => (visibility[key] ? 'text' : 'password');
 
   return (
     <div>
-      <ProfileContainer>  
+      <ProfileContainer>
         <ProfileImageSection>
           <ProfileImageUploader
             image={profileImage}
@@ -28,10 +52,7 @@ export const ProfileClient = () => {
           />
         </ProfileImageSection>
 
-        <ProfileInfoCard
-          role="Administrador"
-          permissions={permissions}
-        />
+        <ProfileInfoCard role="Administrador" permissions={permissions}/>
       </ProfileContainer>
 
       <FormSection>
@@ -44,7 +65,7 @@ export const ProfileClient = () => {
               disabled
               tooltipData="Información del nombre de usuario"
             />
-            <ActionIcon style={{ top: '55px' }}>
+            <ActionIcon style={{ top: '55px' }} onClick={() => setIsOpenName(true)}>
               <Icon size={18} icon="edit-3" />
             </ActionIcon>
           </FormInputWrapper>
@@ -65,7 +86,7 @@ export const ProfileClient = () => {
               disabled
               tooltipData="Información sobre la contraseña"
             />
-            <ActionIcon style={{ top: '55px' }}>
+            <ActionIcon style={{ top: '55px' }} onClick={() => setIsOpenConfirmPassword(true)}>
               <Icon size={18} icon="edit-3" />
             </ActionIcon>
           </FormInputWrapper>
@@ -79,9 +100,10 @@ export const ProfileClient = () => {
               value="Imaginamos"
               disabled
               tooltipData="Información sobre la empresa"
+              type={getType('company')}
             />
-            <ActionIcon style={{ top: '55px' }}>
-              <Icon size={18} icon="eye-off" />
+            <ActionIcon style={{ top: '55px' }} onClick={() => toggleVisibility('company')}>
+              <Icon size={18} icon={visibility.company ? 'eye-off' : 'eye'} />
             </ActionIcon>
           </FormInputWrapper>
         </FormGroup>
@@ -89,9 +111,13 @@ export const ProfileClient = () => {
         {/* NIT */}
         <FormGroup>
           <FormInputWrapper>
-            <InputText value="NIT 321456147-3" disabled />
-            <ActionIcon style={{ top: '20px' }}>
-              <Icon size={18} icon="eye-off" />
+            <InputText
+              value="NIT 321456147-3"
+              disabled
+              type={getType('nit')}
+            />
+            <ActionIcon style={{ top: '20px' }} onClick={() => toggleVisibility('nit')}>
+              <Icon size={18} icon={visibility.nit ? 'eye-off' : 'eye'} />
             </ActionIcon>
           </FormInputWrapper>
         </FormGroup>
@@ -102,9 +128,10 @@ export const ProfileClient = () => {
             <InputText
               value="Av. Caracas #28A - 17, Teusaquillo, Bogotá, Cundinamarca"
               disabled
+              type={getType('address')}
             />
-            <ActionIcon style={{ top: '20px' }}>
-              <Icon size={18} icon="eye-off" />
+            <ActionIcon style={{ top: '20px' }} onClick={() => toggleVisibility('address')}>
+              <Icon size={18} icon={visibility.address ? 'eye-off' : 'eye'} />
             </ActionIcon>
           </FormInputWrapper>
         </FormGroup>
@@ -112,13 +139,19 @@ export const ProfileClient = () => {
         {/* Phone */}
         <FormGroup>
           <FormInputWrapper>
-            <InputText value="314 ### ####" disabled />
-            <ActionIcon style={{ top: '20px' }}>
-              <Icon size={18} icon="eye-off" />
+            <InputText
+              value="314 ### ####"
+              disabled
+              type={getType('phone')}
+            />
+            <ActionIcon style={{ top: '20px' }} onClick={() => toggleVisibility('phone')}>
+              <Icon size={18} icon={visibility.phone ? 'eye-off' : 'eye'} />
             </ActionIcon>
           </FormInputWrapper>
         </FormGroup>
       </FormSection>
+      <EditName isOpen={isOpenName} onClose={closeModal} />
+      <ConfirmPassword isOpen={isOpenConfirmPassword} onClose={closeModal} />
     </div>
   );
 };

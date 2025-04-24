@@ -81,7 +81,7 @@ export default function BotoneraPerfil() {
                 Mi perfil
               </Text>
             </DropdownItem>
-            <DropdownItem>
+            <DropdownItem onClick={() => router.push('/admin/login')}>
               <Text color="black" styleName="Body Medium">
                 Cerrar sesión
               </Text>

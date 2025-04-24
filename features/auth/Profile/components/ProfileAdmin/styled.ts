@@ -1,49 +1,34 @@
-'use client';
 import { styled } from '@/styled-system/jsx';
 
-export const ModalOverlay = styled.div`
-  position: fixed;
-  top: 5%;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+export const ContainerProfileAdmin = styled.div`
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 1000;
-`;
-
-export const ModalContainer = styled.div`
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  width: auto;
-  max-width: 70%;
-  height: auto;
-  padding: 10px;
-`;
-
-export const ModalContent = styled.div`
-  display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 16px;
+  margin-top: 36px;
+`;
+  
+export const RoleTitle = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+  
+export const RoleSection = styled.div`
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
 `;
 
-export const ButtonsContainer = styled.div`
+export const ContainerButton = styled.div`
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   gap: 16px;
   padding: 0 24px 24px;
-
-
-  @media (max-width: 950px) {
-    flex-direction: column;
-  }
-
-
-
-
 `;
 
 export const ActionButton = styled.button`
@@ -71,7 +56,7 @@ export const ActionButton = styled.button`
   &[data-variant='secondary'] {
     background-color: transparent;
     color: #841717;
-    border: 2px solid #841717;
+    border: 1px solid #851817;
     &:hover {
       background-color: rgba(133, 24, 23, 0.05);
     }
