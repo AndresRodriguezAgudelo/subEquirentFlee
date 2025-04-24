@@ -64,9 +64,7 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
                 }
               : { onChange: props.onChange })}
             placeholder={props.placeholder}
-            type={
-              shouldShowIcon && !showContent ? 'password' : props.type || 'text'
-            }
+            type={shouldShowIcon ? (showContent ? 'text' : 'password') : props.type || 'text'}
             disabled={props?.disabled ?? false}
             autoComplete={props?.autoComplete}
           />

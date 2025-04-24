@@ -26,21 +26,6 @@ export const ProfileClient = () => {
     setIsOpenName(false);
     setIsOpenConfirmPassword(false);
   };
-  const [visibility, setVisibility] = useState<Record<string, boolean>>({
-    company: false,
-    nit: false,
-    address: false,
-    phone: false,
-  });
-
-  const toggleVisibility = (key: string) => {
-    setVisibility((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
-  };
-
-  const getType = (key: string) => (visibility[key] ? 'text' : 'password');
 
   return (
     <div>
@@ -66,7 +51,7 @@ export const ProfileClient = () => {
               tooltipData="Información del nombre de usuario"
             />
             <ActionIcon style={{ top: '55px' }} onClick={() => setIsOpenName(true)}>
-              <Icon size={18} icon="edit-3" />
+              <Icon size={25} icon="edit-3" />
             </ActionIcon>
           </FormInputWrapper>
         </FormGroup>
@@ -82,12 +67,12 @@ export const ProfileClient = () => {
             <InputText
               label="Contraseña"
               value="************"
-              type="password"
+              type="text"
               disabled
               tooltipData="Información sobre la contraseña"
             />
             <ActionIcon style={{ top: '55px' }} onClick={() => setIsOpenConfirmPassword(true)}>
-              <Icon size={18} icon="edit-3" />
+              <Icon size={25} icon="edit-3" />
             </ActionIcon>
           </FormInputWrapper>
         </FormGroup>
@@ -100,11 +85,8 @@ export const ProfileClient = () => {
               value="Imaginamos"
               disabled
               tooltipData="Información sobre la empresa"
-              type={getType('company')}
+              type="password"
             />
-            <ActionIcon style={{ top: '55px' }} onClick={() => toggleVisibility('company')}>
-              <Icon size={18} icon={visibility.company ? 'eye-off' : 'eye'} />
-            </ActionIcon>
           </FormInputWrapper>
         </FormGroup>
 
@@ -114,11 +96,8 @@ export const ProfileClient = () => {
             <InputText
               value="NIT 321456147-3"
               disabled
-              type={getType('nit')}
+              type="password"
             />
-            <ActionIcon style={{ top: '20px' }} onClick={() => toggleVisibility('nit')}>
-              <Icon size={18} icon={visibility.nit ? 'eye-off' : 'eye'} />
-            </ActionIcon>
           </FormInputWrapper>
         </FormGroup>
 
@@ -128,11 +107,8 @@ export const ProfileClient = () => {
             <InputText
               value="Av. Caracas #28A - 17, Teusaquillo, Bogotá, Cundinamarca"
               disabled
-              type={getType('address')}
+              type="password"
             />
-            <ActionIcon style={{ top: '20px' }} onClick={() => toggleVisibility('address')}>
-              <Icon size={18} icon={visibility.address ? 'eye-off' : 'eye'} />
-            </ActionIcon>
           </FormInputWrapper>
         </FormGroup>
 
@@ -142,11 +118,8 @@ export const ProfileClient = () => {
             <InputText
               value="314 ### ####"
               disabled
-              type={getType('phone')}
+              type="password"
             />
-            <ActionIcon style={{ top: '20px' }} onClick={() => toggleVisibility('phone')}>
-              <Icon size={18} icon={visibility.phone ? 'eye-off' : 'eye'} />
-            </ActionIcon>
           </FormInputWrapper>
         </FormGroup>
       </FormSection>

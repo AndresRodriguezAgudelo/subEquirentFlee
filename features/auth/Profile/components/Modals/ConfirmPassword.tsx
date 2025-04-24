@@ -17,7 +17,6 @@ export const ConfirmPassword = ({
 }) => {
   const router = useRouter();
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
   const closeModal = () => onClose();
 
   // Adaptando el manejador para que sea compatible con ChangeHandler
@@ -27,10 +26,7 @@ export const ConfirmPassword = ({
     }
     return true; // Devuelve una promesa resuelta con true
   };
-  
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -40,7 +36,9 @@ export const ConfirmPassword = ({
       button1Style={true}
       button2Style={false}
       onButton1Click={closeModal}
-      onButton2Click={() => { router.push('/admin/profile/changePassword') }}
+      onButton2Click={() => {
+        router.push('/admin/profile/changePassword');
+      }}
     >
       <div style={{ width: '460px', padding: '20px' }}>
         <Text
@@ -68,17 +66,9 @@ export const ConfirmPassword = ({
           <InputText
             label=""
             value={password}
-            type={showPassword ? 'text' : 'password'}
+            type="password"
             onChange={handlePasswordChange}
           />
-          {password && (
-            <ActionIcon
-              style={{ top: '20px' }}
-              onClick={togglePasswordVisibility}
-            >
-              <Icon size={18} icon={showPassword ? "eye-off" : "eye"} />
-            </ActionIcon>
-          )}
         </FormInputWrapper>
       </div>
     </Modal>

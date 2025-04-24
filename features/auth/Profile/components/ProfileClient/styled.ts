@@ -30,6 +30,7 @@ export const ActionIcon = styled.div`
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
+  padding: 0px 5px;
   cursor: pointer;
   z-index: 10;
   display: flex;

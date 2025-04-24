@@ -52,7 +52,7 @@ export const ProfileAdmin = () => {
           tooltipData="Información sobre el nombre de usuario"
         />
         <ActionIcon style={{ top: '55px' }} onClick={() => setIsOpenName(true)}>
-          <Icon size={18} icon="edit-3" />
+          <Icon size={25} icon="edit-3" />
         </ActionIcon>
       </FormInputWrapper>
       <InputText label="Email" value="nombre@gmail.com" type="text" disabled />
@@ -65,19 +65,19 @@ export const ProfileAdmin = () => {
           tooltipData="Información sobre el número de documento"
         />
         <ActionIcon style={{ top: '55px' }} onClick={() => setIsOpenDocument(true)}>
-          <Icon size={18} icon="edit-3" />
+          <Icon size={25} icon="edit-3" />
         </ActionIcon>
       </FormInputWrapper>
       <FormInputWrapper>
         <InputText
           label="Contraseña"
           value="************"
-          type="password"
+          type="text"
           disabled
           tooltipData="Información sobre la contraseña"
         />
         <ActionIcon style={{ top: '55px' }} onClick={() => setIsOpenConfirmPassword(true)}>
-          <Icon size={18} icon="edit-3" />
+          <Icon size={25} icon="edit-3" />
         </ActionIcon>
       </FormInputWrapper>
       <ContainerButton>
