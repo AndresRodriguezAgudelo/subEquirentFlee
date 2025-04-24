@@ -27,7 +27,7 @@ export default function NavBarTop() {
     >
       <div>
         <Image
-          src="/images/LogoDeColor.png"
+          src="/images/Logo_Equisoft_Azul.png"
           alt="Logo"
           width={150}
           height={44}
