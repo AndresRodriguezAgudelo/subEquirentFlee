@@ -77,9 +77,9 @@ const InputText = forwardRef<HTMLInputElement, InputTextProps>(
             <EyeContainer>
               <Eye onClick={() => setShowContent((s) => !s)} type="button">
                 {showContent ? (
-                  <Icon size={25} icon="eye_closed" />
+                  <Icon size={25} icon="eye-off" />
                 ) : (
-                  <Icon size={25} icon="eye_open" />
+                  <Icon size={25} icon="eye" />
                 )}
               </Eye>
             </EyeContainer>

@@ -10,6 +10,9 @@ export const initStore = (): AppState => {
   return defaultState;
 };
 
+// Función auxiliar para verificar si estamos en el navegador
+const isBrowser = () => typeof window !== 'undefined';
+
 export const createAppStore = (initState: AppState = defaultState) => {
   return createStore<Store>()(
     persist(
@@ -19,7 +22,18 @@ export const createAppStore = (initState: AppState = defaultState) => {
       }),
       {
         name: 'app-store', // unique name for the storage
-        storage: createJSONStorage(() => localStorage), // specify the storage, e.g., localStorage
+        storage: createJSONStorage(() => {
+          // Solo usar localStorage en el cliente
+          if (isBrowser()) {
+            return localStorage;
+          }
+          // Proporcionar un almacenamiento vacío para el servidor
+          return {
+            getItem: () => null,
+            setItem: () => {},
+            removeItem: () => {}
+          };
+        }),
       }
     )
   );

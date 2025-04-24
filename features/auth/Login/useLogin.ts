@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import { loginUser } from '../../../shared/data/services/authService' // Importamos la función del servicio
+
+// Función auxiliar para verificar si estamos en el navegador
+const isBrowser = () => typeof window !== 'undefined';
 export const useLogin = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -16,7 +19,7 @@ export const useLogin = () => {
 
       if (success) {
         // Si "Recordar contraseña" está activado, almacenamos las credenciales en localStorage
-        if (rememberMe) {
+        if (rememberMe && isBrowser()) {
           localStorage.setItem('username', username)
           localStorage.setItem('password', password)
         }
@@ -38,10 +41,16 @@ export const useLogin = () => {
 
   // Autocompletar campos desde localStorage si "Recordar contraseña" esta activado
   useEffect(() => {
-    if (localStorage.getItem('username') && localStorage.getItem('password')) {
-      setUsername(localStorage.getItem('username') ?? '')
-      setPassword(localStorage.getItem('password') ?? '')
-      setRememberMe(true)
+    // Solo ejecutar en el cliente
+    if (isBrowser()) {
+      const savedUsername = localStorage.getItem('username')
+      const savedPassword = localStorage.getItem('password')
+      
+      if (savedUsername && savedPassword) {
+        setUsername(savedUsername)
+        setPassword(savedPassword)
+        setRememberMe(true)
+      }
     }
   }, [])
 
