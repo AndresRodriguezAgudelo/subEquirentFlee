@@ -121,7 +121,7 @@ export const CustomerManagement = () => {
     <Container>
       <Header>
         <IconContainer>
-          <Icon icon="users" size={24} />
+          <Icon icon="user-cog" size={24} />
         </IconContainer>
         <Title>Gestión de usuarios</Title>
       </Header>
@@ -155,13 +155,13 @@ export const CustomerManagement = () => {
         <Table>
           <thead>
             <tr>
-              <TableHeader width="30%">Nombre</TableHeader>
-              <TableHeader width="25%">Correo</TableHeader>
-              <TableHeader width="25%">Módulos</TableHeader>
-              <TableHeader width="5%" textAlign="center">
+              <TableHeader style={{ '--width': '30%' } as React.CSSProperties}>Nombre</TableHeader>
+              <TableHeader style={{ '--width': '25%' } as React.CSSProperties}>Correo</TableHeader>
+              <TableHeader style={{ '--width': '25%' } as React.CSSProperties}>Módulos</TableHeader>
+              <TableHeader style={{ '--width': '5%', '--textAlign': 'center' } as React.CSSProperties}>
                 Acción
               </TableHeader>
-              <TableHeader width="8%" textAlign="center">
+              <TableHeader style={{ '--width': '8%', '--textAlign': 'center' } as React.CSSProperties}>
                 Estado
               </TableHeader>
             </tr>
@@ -169,20 +169,20 @@ export const CustomerManagement = () => {
           <tbody>
             {users.map((user) => (
               <TableRow key={user.id}>
-                <TableCell width="30%">
+                <TableCell style={{ '--width': '30%' } as React.CSSProperties}>
                   <UserInfo>
                     <Avatar>
                       <AvatarImage
-                        src="/placeholder-avatar.jpg"
+                        src="/images/FotoDePerfilTest.png"
                         alt={user.name}
                       />
                     </Avatar>
                     <Text>{user.name}</Text>
                   </UserInfo>
                 </TableCell>
-                <TableCell width="25%">{user.email}</TableCell>
-                <TableCell width="25%">{user.module}</TableCell>
-                <TableCell width="5%" textAlign="center">
+                <TableCell style={{ '--width': '25%' } as React.CSSProperties}>{user.email}</TableCell>
+                <TableCell style={{ '--width': '25%' } as React.CSSProperties}>{user.module}</TableCell>
+                <TableCell style={{ '--width': '5%', '--textAlign': 'center' } as React.CSSProperties}>
                   <ActionContainer>
                     <ActionButton
                       aria-label="Edit user"
@@ -205,7 +205,7 @@ export const CustomerManagement = () => {
                     </ActionButton>
                   </ActionContainer>
                 </TableCell>
-                <TableCell width="8%" textAlign="center">
+                <TableCell style={{ '--width': '8%', '--textAlign': 'center' } as React.CSSProperties}>
                   <ToggleSwitch onClick={() => handleToggleClick(user.id)}>
                     <ToggleInput
                       type="checkbox"
@@ -213,7 +213,14 @@ export const CustomerManagement = () => {
                       onChange={() => {}}
                       aria-label={`Toggle active status for ${user.name}`}
                     />
-                    <ToggleSlider checked={user.active} />
+                    <ToggleSlider 
+                      style={{
+                        '--toggle-bg': user.active ? '#FF6B00' : '#E0E0E0',
+                        '--toggle-shadow': user.active ? '0 0 2px rgba(255, 107, 0, 0.4)' : 'none',
+                        '--toggle-transform': user.active ? 'translateX(26px)' : 'translateX(0)',
+                        '--toggle-hover-bg': user.active ? '#FF6B00' : '#CCCCCC'
+                      } as React.CSSProperties}
+                    />
                   </ToggleSwitch>
                 </TableCell>
               </TableRow>

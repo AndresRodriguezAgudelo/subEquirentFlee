@@ -63,6 +63,13 @@ export default function NavBarRight() {
             <Icon icon="home" size={32} color="#FFFFFF" />
             <Text styleName={'Caption Accent / SemiBold'}>Inicio</Text>
           </ListItem>
+          <ListItem
+            href="/admin/customerManagement"
+            className={pathname === '/admin/customerManagement' ? 'isSelect' : ''}
+          >
+            <Icon icon="user-cog" size={32} color="#FFFFFF" />
+            <Text styleName={'Caption Accent / SemiBold'}>Gestión de usuarios</Text>
+          </ListItem>
 
           <Text styleName={'Caption Accent / SemiBold'} color="white">
             GESTION DE FLOTAS Y ACTIVOS

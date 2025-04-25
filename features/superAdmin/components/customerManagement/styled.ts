@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@/styled-system/jsx';
 
 export const Container = styled.div`
   width: 100%;
@@ -84,11 +84,11 @@ export const Table = styled.table`
   table-layout: fixed;
 `;
 
-export const TableHeader = styled.th<{ width?: string; textAlign?: string }>`
-  text-align: ${props => props.textAlign || 'left'};
+export const TableHeader = styled.th`
+  text-align: var(--textAlign, left);
   padding: 16px 12px;
   font-weight: 500;
-  width: ${props => props.width || 'auto'};
+  width: var(--width, auto);
   background-color: transparent;
 `;
 
@@ -98,12 +98,12 @@ export const TableRow = styled.tr`
   }
 `;
 
-export const TableCell = styled.td<{ width?: string; textAlign?: string }>`
+export const TableCell = styled.td`
   padding: 16px 12px;
   border-bottom: 1px solid #e0e0e0;
   vertical-align: middle;
-  text-align: ${props => props.textAlign || 'left'};
-  width: ${props => props.width || 'auto'};
+  text-align: var(--textAlign, left);
+  width: var(--width, auto);
   background-color: #ffffff;
 `;
 
@@ -161,17 +161,17 @@ export const ToggleInput = styled.input`
   height: 0;
 `;
 
-export const ToggleSlider = styled.span<{ checked: boolean }>`
+export const ToggleSlider = styled.span`
   position: absolute;
   cursor: pointer;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${(props) => (props.checked ? '#FF6B00' : '#E0E0E0')};
+  background-color: var(--toggle-bg, #E0E0E0);
   transition: 0.3s;
   border-radius: 34px;
-  box-shadow: ${(props) => (props.checked ? '0 0 2px rgba(255, 107, 0, 0.4)' : 'none')};
+  box-shadow: var(--toggle-shadow, none);
 
   &:before {
     position: absolute;
@@ -183,13 +183,12 @@ export const ToggleSlider = styled.span<{ checked: boolean }>`
     background-color: white;
     transition: 0.3s;
     border-radius: 50%;
-    transform: ${(props) =>
-      props.checked ? 'translateX(26px)' : 'translateX(0)'};
+    transform: var(--toggle-transform, translateX(0));
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   }
   
   &:hover {
-    background-color: ${(props) => (props.checked ? '#FF6B00' : '#CCCCCC')};
+    background-color: var(--toggle-hover-bg, #CCCCCC);
   }
 `;
 
