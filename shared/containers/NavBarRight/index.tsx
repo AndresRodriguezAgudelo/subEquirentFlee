@@ -25,10 +25,8 @@ export default function NavBarRight() {
 
   if (!pathname) return null;
 
-  // Rutas excluidas para este componente
   const excludedRoutes = ['/admin/login', '/admin/forgotPassword', '/admin/changePassword'];
 
-  // if (pathname && pathname.split('/')?.length > 3) return null;
   if (excludedRoutes.includes(pathname)) {
     return null;
   }
@@ -64,11 +62,18 @@ export default function NavBarRight() {
             <Text styleName={'Caption Accent / SemiBold'}>Inicio</Text>
           </ListItem>
           <ListItem
-            href="/admin/customerManagement"
-            className={pathname === '/admin/customerManagement' ? 'isSelect' : ''}
+            href="/admin/userManagement"
+            className={pathname === '/admin/userManagement' ? 'isSelect' : ''}
           >
             <Icon icon="user-cog" size={32} color="#FFFFFF" />
             <Text styleName={'Caption Accent / SemiBold'}>Gestión de usuarios</Text>
+          </ListItem>
+          <ListItem
+            href="/admin/customerManagement"
+            className={pathname === '/admin/customerManagement' ? 'isSelect' : ''}
+          >
+            <Icon icon="users" size={32} color="#FFFFFF" />
+            <Text styleName={'Caption Accent / SemiBold'}>Gestión de clientes</Text>
           </ListItem>
 
           <Text styleName={'Caption Accent / SemiBold'} color="white">

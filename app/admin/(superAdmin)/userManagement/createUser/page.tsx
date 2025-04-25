@@ -1,4 +1,4 @@
-import FormUser from '@/features/superAdmin/components/customerManagement/formUser';
+import FormUser from '@/features/superAdmin/components/UserManagement/formUser';
 
 const CreateUserPage: React.FC = () => {
   return <FormUser />;

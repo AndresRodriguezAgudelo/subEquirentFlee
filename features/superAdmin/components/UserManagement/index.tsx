@@ -31,8 +31,8 @@ import {
   TableContainer,
 } from './styled';
 import Button from '@/shared/components/Button';
-import { StatusUserModal } from './Modals/StatusUser/StatusUser';
-import { DeleteUserModal } from './Modals/DeleteUser';
+import { StatusUserModal } from '../Modals/StatusUser/StatusUser';
+import { DeleteUserModal } from '../Modals/DeleteUser';
 
 const mockUsers = [
   {
@@ -93,7 +93,7 @@ const mockUsers = [
   },
 ];
 
-export const CustomerManagement = () => {
+export const UserManagement = () => {
   const router = useRouter();
   const [users, setUsers] = useState(mockUsers);
   const [searchTerm, setSearchTerm] = useState('');
@@ -188,7 +188,7 @@ export const CustomerManagement = () => {
                       aria-label="Edit user"
                       onClick={() =>
                         router.push(
-                          `/admin/customerManagement/updateUser/${user.id}`
+                          `/admin/userManagement/updateUser/${user.id}`
                         )
                       }
                     >
@@ -235,7 +235,7 @@ export const CustomerManagement = () => {
           color="#51BB51"
           variant="primary"
           style={{ backgroundColor: '#51BB51' }}
-          onClick={() => router.push('/admin/customerManagement/createUser')}
+          onClick={() => router.push('/admin/userManagement/createUser')}
         >
           <Icon icon="plus" size={18} color="#fff" />
           Crear usuario

@@ -1,5 +1,10 @@
-import { CustomerManagement } from '@/features/superAdmin/components/customerManagement';
+import React from 'react'
+import { CustomersManagement } from '@/features/superAdmin/components/CustomersManagement'
 
-export default function CustomerManagementPage() {
-  return <CustomerManagement />;
+const UserManagementPage = () => {
+  return (
+    <CustomersManagement />
+  )
 }
+
+export default UserManagementPage
