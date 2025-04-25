@@ -2,7 +2,19 @@
 import React, { useState } from 'react';
 import InputText from '@/shared/components/InputText';
 import Button from '@/shared/components/Button';
-import { Container, ContainerTitle, SectionTitle, Divider, FormGroup, Select, ButtonContainer } from './styled';
+import {
+  Container,
+  ContainerTitle,
+  SectionTitle,
+  Divider,
+  FormGroup,
+  Select,
+  ButtonContainer,
+  InfoIcon,
+  FormLabel,
+} from './styled';
+import Text from '@/shared/components/Text';
+import Icon from '@/shared/containers/Icons';
 
 export type FieldType = 'text' | 'email' | 'select' | 'number' | 'password';
 
@@ -16,7 +28,7 @@ export interface FormField {
   label: string;
   type: FieldType;
   tooltipData?: string;
-  options?: SelectOption[]; 
+  options?: SelectOption[];
   required?: boolean;
   placeholder?: string;
 }
@@ -84,6 +96,16 @@ export const BaseForm: React.FC<BaseFormProps> = ({
       case 'select':
         return (
           <FormGroup key={field.name}>
+            <FormLabel htmlFor={field.name}>
+              <Text styleName={'Highligth Accent'} as={'label'}>
+                {field.label}
+              </Text>
+              {field.tooltipData && (
+                <InfoIcon>
+                  <Icon size={16} icon="info" />
+                </InfoIcon>
+              )}
+            </FormLabel>
             <Select
               name={field.name}
               value={formData[field.name]}

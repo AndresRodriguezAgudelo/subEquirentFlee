@@ -51,7 +51,7 @@ export const Input = styled.input`
   border-radius: 4px;
   font-size: 14px;
   transition: border-color 0.2s;
-  
+
   &:focus {
     outline: none;
     border-color: #0066cc;
@@ -61,12 +61,12 @@ export const Input = styled.input`
 export const Select = styled.select`
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  border: 1px solid rgba(131, 131, 131, 1);
+  border-radius: 8px;
   font-size: 14px;
   background-color: white;
   transition: border-color 0.2s;
-  
+
   &:focus {
     outline: none;
     border-color: #0066cc;
@@ -89,7 +89,7 @@ export const CancelButton = styled.button`
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
-  
+
   &:hover {
     background-color: #f5f5f5;
   }
