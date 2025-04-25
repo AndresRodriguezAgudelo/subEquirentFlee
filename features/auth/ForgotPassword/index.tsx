@@ -3,15 +3,16 @@
 import AuthContainer from "@/shared/containers/AuthContainer"
 
 import { LoginForm, Form, Input, InputWrapper, StyledLabel, SubmitButton, ReturnButton } from './styled';
+import { useRouter } from 'next/navigation';
 
 export const ForgotPassword = () => {
-
+  const router = useRouter();
   return (
     <AuthContainer>
       <LoginForm>
         <h2>¿Olvidaste tu contraseña?</h2>
         <br />
-        <p>Ecribe tu correo eléctronico para recuperar tu contraseña</p>
+        <p>Escribe tu correo eléctronico para recuperar tu contraseña</p>
         <br />
         <Form>
           <InputWrapper>
@@ -20,11 +21,10 @@ export const ForgotPassword = () => {
               type="email"
               id="email"
               name="email"
-              required
             />
           </InputWrapper>
           <SubmitButton type='submit'>Enviar</SubmitButton>
-          <ReturnButton>Volver al Login</ReturnButton>
+          <ReturnButton onClick={() => router.push('/admin/login')}>Volver al Login</ReturnButton>
         </Form>
       </LoginForm>
     </AuthContainer>
