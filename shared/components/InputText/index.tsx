@@ -18,7 +18,7 @@ type InputTextProps = {
   name?: string;
   onChange?: ChangeHandler;
   onBlur?: ChangeHandler;
-  type?: 'password' | 'date' | 'number' | 'text';
+  type?: 'password' | 'date' | 'number' | 'text' | 'email';
   maxNum?: number;
   hasErrors?: boolean;
   value?: string;
