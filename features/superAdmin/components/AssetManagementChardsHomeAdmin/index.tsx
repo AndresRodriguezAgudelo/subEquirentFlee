@@ -206,9 +206,7 @@ export default function AssetManagementChardsHomeAdmin({
           onClick={() => {
             const nextEditMode = !editMode;
             setEditMode(!editMode);
-            if (!nextEditMode) {
-              setShowModal(true);
-            }
+            // Ya no mostramos el modal al salir del modo edición
           }}
           style={{
             display: 'flex',
@@ -254,11 +252,12 @@ export default function AssetManagementChardsHomeAdmin({
                       {editMode && (
                         <>
                           <EditBlocker />
-                          <EditOverlay onClick={() => {
-                            // console.log('clic en editar')
-                            // setShowModal(true)
-                          }
-                          }
+                          <EditOverlay 
+                            onClick={(e) => {
+                              // Detener la propagación para evitar conflictos con el drag and drop
+                              e.stopPropagation();
+                              setShowModal(true);
+                            }}
                             style={{ cursor: 'pointer' }}>
                             <Pencil />
                             <span>Editar</span>

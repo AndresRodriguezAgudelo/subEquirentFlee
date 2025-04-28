@@ -184,8 +184,10 @@ export const EditOverlay = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  pointer-events: none;
+  pointer-events: auto; /* Cambiado de 'none' a 'auto' para permitir clics */
   background-color: rgba(200, 200, 200, 0.3);
+  padding: 20px;
+  border-radius: 8px;
 
   & > svg {
     color: #555;
@@ -208,7 +210,7 @@ export const EditBlocker = styled.div`
   bottom: 0;
   background-color: rgba(200, 200, 200, 0.3);
   z-index: 5;
-  pointer-events: all;
+  pointer-events: auto; /* Mantiene la capacidad de arrastrar */
   border-radius: 12px;
 `;
 
