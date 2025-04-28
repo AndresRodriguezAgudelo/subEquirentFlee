@@ -249,3 +249,60 @@ export const DragHandle = styled.div`
     cursor: grabbing;
   }
 `;
+
+export const ActionModalContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  z-index: 1000;
+  width: 500px;
+`;
+
+export const ActionModalTitle = styled.h3`
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  text-align: center;
+`;
+
+export const ActionButtons = styled.div`
+  display: flex;
+  /* flex-direction: column; */
+  gap: 1rem;
+  
+  & > button {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    
+    &:first-child {
+      background-color: #ff3b30;
+      color: white;
+      
+      &:hover {
+        background-color: #e0352b;
+      }
+    }
+    
+    &:last-child {
+      background-color: #0070f3;
+      color: white;
+      
+      &:hover {
+        background-color: #005dc1;
+      }
+    }
+  }
+`;

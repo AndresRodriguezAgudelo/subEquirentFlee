@@ -5,6 +5,8 @@ import dynamic from 'next/dynamic';
 import Icon from '@/shared/containers/Icons';
 import Text from '@/shared/components/Text';
 import ChartCard from '@/shared/components/ChartCard';
+import Modal from '@/shared/components/Modal';
+import CenteredButtonsModal from './CenteredButtonsModal';
 import {
   ContChard,
   ContChards,
@@ -15,17 +17,15 @@ import {
   ModalContainer,
   ModalList,
   ModalOverlay,
-  ModalTitle
+  ModalTitle,
+  ActionModalTitle,
 } from './styled';
 import testData from './testData.json';
 import { ChartItem } from './types';
-import {
-  DragDropContext,
-  Draggable
-} from 'react-beautiful-dnd';
+import { DragDropContext, Draggable } from 'react-beautiful-dnd';
 import { Pencil, X } from 'lucide-react';
 import StrictModeDroppable from './StrictModeDroppable';
-  
+
 // Importar el componente completo de recharts de forma dinámica
 const RechartsComponent = dynamic(() => import('./rechartsWrapper'), {
   ssr: false,
@@ -43,11 +43,16 @@ export default function AssetManagementChardsHomeAdmin({
   const [isClient, setIsClient] = useState(false);
   const [selectedTime, setSelectedTime] = useState<string>('6 meses');
   const [selectedStatus, setSelectedStatus] = useState<string>('actual');
-  const [selectedDistribution, setSelectedDistribution] = useState<string>('2024-01');
+  const [selectedDistribution, setSelectedDistribution] =
+    useState<string>('2024-01');
   const [chartItems, setChartItems] = useState<ChartItem[]>([]);
 
   const [editMode, setEditMode] = useState(false); // Estado para modo edición
   const [showModal, setShowModal] = useState(false);
+  const [showActionModal, setShowActionModal] = useState(false);
+  const [selectedChartItem, setSelectedChartItem] = useState<ChartItem | null>(
+    null
+  );
 
   const [allCharts, setAllCharts] = useState<ChartItem[]>([]);
   const [selectedChartIds, setSelectedChartIds] = useState<string[]>([]);
@@ -56,15 +61,29 @@ export default function AssetManagementChardsHomeAdmin({
     setIsClient(true);
   }, []);
 
-  const handleSelectChange = (setter: (value: string) => void) => (option: { value: string; label: string }) => {
-    setter(option.value);
-  };
+  const handleSelectChange =
+    (setter: (value: string) => void) =>
+    (option: { value: string; label: string }) => {
+      setter(option.value);
+    };
 
-  const chartsData = useMemo(() => ({
-    subscriptions: testData.pieGaugeChartDataBySemester[selectedStatus as keyof typeof testData.pieGaugeChartDataBySemester] || testData.pieGaugeChartDataBySemester['6-meses'],
-    companies: testData.pieGaugeChart2Data[selectedStatus as keyof typeof testData.pieGaugeChart2Data] || testData.pieGaugeChart2Data['30-dias'],
-    distribution: testData.horizontalChartDataByMonth[selectedDistribution as keyof typeof testData.horizontalChartDataByMonth] || testData.horizontalChartDataByMonth['2024-01'],
-  }), [selectedStatus, selectedDistribution]);
+  const chartsData = useMemo(
+    () => ({
+      subscriptions:
+        testData.pieGaugeChartDataBySemester[
+          selectedStatus as keyof typeof testData.pieGaugeChartDataBySemester
+        ] || testData.pieGaugeChartDataBySemester['6-meses'],
+      companies:
+        testData.pieGaugeChart2Data[
+          selectedStatus as keyof typeof testData.pieGaugeChart2Data
+        ] || testData.pieGaugeChart2Data['30-dias'],
+      distribution:
+        testData.horizontalChartDataByMonth[
+          selectedDistribution as keyof typeof testData.horizontalChartDataByMonth
+        ] || testData.horizontalChartDataByMonth['2024-01'],
+    }),
+    [selectedStatus, selectedDistribution]
+  );
 
   useEffect(() => {
     if (chartsData) {
@@ -77,7 +96,7 @@ export default function AssetManagementChardsHomeAdmin({
           options: testData.options.timeOptions,
           selectedValue: selectedStatus,
           centerText: '1500',
-          subText: 'Total suscripciones'
+          subText: 'Total suscripciones',
         },
         {
           id: 'chart-2',
@@ -87,7 +106,7 @@ export default function AssetManagementChardsHomeAdmin({
           options: testData.options.timeOptions2,
           selectedValue: selectedStatus,
           centerText: '1200',
-          subText: 'Total empresas registradas'
+          subText: 'Total empresas registradas',
         },
         {
           id: 'chart-3',
@@ -97,7 +116,7 @@ export default function AssetManagementChardsHomeAdmin({
           options: testData.options.timeOptions,
           selectedValue: selectedDistribution,
           xDataKey: 'name',
-          yDataKey: 'value'
+          yDataKey: 'value',
         },
         {
           id: 'chart-4',
@@ -107,7 +126,7 @@ export default function AssetManagementChardsHomeAdmin({
           options: testData.options.timeOptions2,
           selectedValue: selectedTime,
           xDataKey: '120',
-          yDataKey: 'value'
+          yDataKey: 'value',
         },
         {
           id: 'chart-5',
@@ -118,7 +137,7 @@ export default function AssetManagementChardsHomeAdmin({
           selectedValue: selectedTime,
           xDataKey: 'name',
           yDataKey: 'value',
-          footerText: 'Pepsi ha incrementado un 13% sus ventas'
+          footerText: 'Pepsi ha incrementado un 13% sus ventas',
         },
         {
           id: 'chart-6',
@@ -149,7 +168,7 @@ export default function AssetManagementChardsHomeAdmin({
           selectedValue: selectedTime,
           innerRadius: 0,
           outerRadius: 120,
-        }
+        },
       ];
       setAllCharts(generatedChartItems);
     }
@@ -193,10 +212,7 @@ export default function AssetManagementChardsHomeAdmin({
   if (!isClient) return null;
 
   return (
-
-
     <>
-
       <ContTitle>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Icon icon={icon} size={32} />
@@ -218,7 +234,7 @@ export default function AssetManagementChardsHomeAdmin({
             border: '1px solid #ccc',
             borderRadius: '8px',
             cursor: 'pointer',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
           }}
         >
           {editMode ? <X size={16} /> : <Pencil size={16} />}
@@ -252,13 +268,15 @@ export default function AssetManagementChardsHomeAdmin({
                       {editMode && (
                         <>
                           <EditBlocker />
-                          <EditOverlay 
+                          <EditOverlay
                             onClick={(e) => {
                               // Detener la propagación para evitar conflictos con el drag and drop
                               e.stopPropagation();
-                              setShowModal(true);
+                              setSelectedChartItem(item);
+                              setShowActionModal(true);
                             }}
-                            style={{ cursor: 'pointer' }}>
+                            style={{ cursor: 'pointer' }}
+                          >
                             <Pencil />
                             <span>Editar</span>
                           </EditOverlay>
@@ -312,7 +330,9 @@ export default function AssetManagementChardsHomeAdmin({
             <ModalList>
               {[
                 ...chartItems,
-                ...allCharts.filter((item) => !chartItems.some((i) => i.id === item.id))
+                ...allCharts.filter(
+                  (item) => !chartItems.some((i) => i.id === item.id)
+                ),
               ].map((item) => (
                 <li key={item.id}>
                   <label>
@@ -338,7 +358,9 @@ export default function AssetManagementChardsHomeAdmin({
             <ModalButtons>
               <button onClick={() => setShowModal(false)}>Cancelar</button>
               <button
-                disabled={selectedChartIds.length < 3 || selectedChartIds.length > 7}
+                disabled={
+                  selectedChartIds.length < 3 || selectedChartIds.length > 7
+                }
                 onClick={() => {
                   const filtered = chartItems.filter((item) =>
                     selectedChartIds.includes(item.id)
@@ -352,8 +374,14 @@ export default function AssetManagementChardsHomeAdmin({
                   const finalCharts = [...filtered, ...newSelectedCharts];
 
                   setChartItems(finalCharts);
-                  localStorage.setItem('selectedChartIds', JSON.stringify(selectedChartIds));
-                  localStorage.setItem('chartItemsOrder', JSON.stringify(finalCharts.map(i => i.id)));
+                  localStorage.setItem(
+                    'selectedChartIds',
+                    JSON.stringify(selectedChartIds)
+                  );
+                  localStorage.setItem(
+                    'chartItemsOrder',
+                    JSON.stringify(finalCharts.map((i) => i.id))
+                  );
                   setShowModal(false);
                 }}
               >
@@ -361,10 +389,53 @@ export default function AssetManagementChardsHomeAdmin({
               </button>
             </ModalButtons>
           </ModalContainer>
-
         </>
       )}
 
+      {/* Modal de acciones (Eliminar/Cambiar) con botones centrados */}
+      <CenteredButtonsModal
+        isOpen={showActionModal && selectedChartItem !== null}
+        onClose={() => setShowActionModal(false)}
+        button1="ELIMINAR"
+        button2="CAMBIAR"
+        button1Style={true}
+        button2Style={false}
+        onButton1Click={() => {
+          if (!selectedChartItem) return;
+          const updatedChartItems = chartItems.filter(
+            (item) => item.id !== selectedChartItem.id
+          );
+          const updatedSelectedIds = selectedChartIds.filter(
+            (id) => id !== selectedChartItem.id
+          );
+
+          // Solo actualizar si quedan al menos 3 gráficas
+          if (updatedSelectedIds.length >= 3) {
+            setChartItems(updatedChartItems);
+            setSelectedChartIds(updatedSelectedIds);
+            localStorage.setItem(
+              'selectedChartIds',
+              JSON.stringify(updatedSelectedIds)
+            );
+            localStorage.setItem(
+              'chartItemsOrder',
+              JSON.stringify(updatedChartItems.map((i) => i.id))
+            );
+          }
+
+          setShowActionModal(false);
+        }}
+        onButton2Click={() => {
+          setShowActionModal(false);
+          setShowModal(true);
+        }}
+      >
+        <div style={{ textAlign: 'center', padding: '1rem 0 2rem' }}>
+          <ActionModalTitle>
+            ¿Quieres cambiar o eliminar el módulo?
+          </ActionModalTitle>
+        </div>
+      </CenteredButtonsModal>
     </>
   );
 }
