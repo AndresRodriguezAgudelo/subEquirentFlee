@@ -24,8 +24,8 @@ export const Title = styled.h1`
 `;
 
 export const SubTitle = styled.h2`
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 28px;
+  font-weight: 600;
   margin-bottom: 16px;
 `;
 
@@ -87,7 +87,7 @@ export const Table = styled.table`
 export const TableHeader = styled.th`
   text-align: var(--textAlign, left);
   padding: 16px 12px;
-  font-weight: 500;
+  font-weight: 600;
   width: var(--width, auto);
   background-color: transparent;
 `;

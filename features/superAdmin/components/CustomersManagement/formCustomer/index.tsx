@@ -1,12 +1,13 @@
 'use client';
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import BaseForm, { FormField } from '@/features/superAdmin/containers/BaseForm';
 import LayoutCreateCustomerManagement from '@/features/superAdmin/containers/Layouts';
 
 export const FormCustomerManagement: React.FC = () => {
   const router = useRouter();
-
+  const params = useParams();
+  const userId = params?.id as string || '';
   const formFields: FormField[] = [
     {
       name: 'username',
@@ -85,12 +86,12 @@ export const FormCustomerManagement: React.FC = () => {
 
   return (
     <BaseForm
-      title="Creación de cliente"
+      title={userId ? 'Editar cliente' : 'Creación de cliente'}
       sectionTitle="Datos del perfil"
       fields={formFields}
       onSubmit={handleSubmit}
       onCancel={handleCancel}
-      submitButtonText="Guardar usuario"
+      submitButtonText="Guardar cliente"
       layout={LayoutCreateCustomerManagement}
     />
   );

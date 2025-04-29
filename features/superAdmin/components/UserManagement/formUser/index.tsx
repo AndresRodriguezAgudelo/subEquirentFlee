@@ -3,9 +3,13 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import BaseForm, { FormField } from '@/features/superAdmin/containers/BaseForm';
 import LayoutCreateCustomerManagement from '@/features/superAdmin/containers/Layouts';
+import { useParams } from 'next/navigation';
 
 export const FormUserManagement: React.FC = () => {
   const router = useRouter();
+  const params = useParams();
+  const userId = params?.id as string || '';
+
 
   const formFields: FormField[] = [
     {
@@ -57,7 +61,7 @@ export const FormUserManagement: React.FC = () => {
 
   return (
     <BaseForm
-      title="Creación de usuario"
+      title={userId ? 'Editar usuario' : 'Creación de usuario'}
       sectionTitle="Datos del perfil"
       fields={formFields}
       onSubmit={handleSubmit}

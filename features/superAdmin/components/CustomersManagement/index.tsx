@@ -232,7 +232,7 @@ export const CustomersManagement = () => {
                       aria-label="Edit user"
                       onClick={() =>
                         router.push(
-                          `/admin/userManagement/updateUser/${user.id}`
+                          `/admin/customerManagement/updateCustomer/${user.id}`
                         )
                       }
                     >

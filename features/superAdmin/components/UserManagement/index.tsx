@@ -39,56 +39,56 @@ const mockUsers = [
     id: 1,
     name: 'Santiago Andrés Lopera Rodríguez',
     email: 'Nombre@dsadf.com',
-    module: 'Administrador Equisoft',
+    role: 'Administrador Equisoft',
     active: false,
   },
   {
     id: 2,
     name: 'Santiago Andrés Lopera Rodríguez',
     email: 'Nombre@dsadf.com',
-    module: 'Consultor',
+    role: 'Consultor',
     active: true,
   },
   {
     id: 3,
     name: 'Santiago Andrés Lopera Rodríguez',
     email: 'Nombre@dsadf.com',
-    module: 'Consultor',
+    role: 'Consultor',
     active: false,
   },
   {
     id: 4,
     name: 'Santiago Andrés Lopera Rodríguez',
     email: 'Nombre@dsadf.com',
-    module: 'Consultor',
+    role: 'Consultor',
     active: true,
   },
   {
     id: 5,
     name: 'Santiago Andrés Lopera Rodríguez',
     email: 'Nombre@dsadf.com',
-    module: 'Consultor',
+    role: 'Consultor',
     active: true,
   },
   {
     id: 6,
     name: 'Santiago Andrés Lopera Rodríguez',
     email: 'Nombre@dsadf.com',
-    module: 'Consultor',
+    role: 'Consultor',
     active: true,
   },
   {
     id: 7,
     name: 'Santiago Andrés Lopera Rodríguez',
     email: 'Nombre@dsadf.com',
-    module: 'Consultor',
+    role: 'Consultor',
     active: true,
   },
   {
     id: 8,
     name: 'Santiago Andrés Lopera Rodríguez',
     email: 'Nombre@dsadf.com',
-    module: 'Consultor',
+    role: 'Consultor',
     active: true,
   },
 ];
@@ -146,7 +146,7 @@ export const UserManagement = () => {
             <option value="">Ordenar por</option>
             <option value="name">Nombre</option>
             <option value="email">Correo</option>
-            <option value="module">Módulo</option>
+            <option value="role">Rol</option>
           </SortSelect>
         </SortContainer>
       </SearchContainer>
@@ -157,7 +157,7 @@ export const UserManagement = () => {
             <tr>
               <TableHeader style={{ '--width': '30%' } as React.CSSProperties}>Nombre</TableHeader>
               <TableHeader style={{ '--width': '25%' } as React.CSSProperties}>Correo</TableHeader>
-              <TableHeader style={{ '--width': '25%' } as React.CSSProperties}>Módulos</TableHeader>
+              <TableHeader style={{ '--width': '25%' } as React.CSSProperties}>Rol</TableHeader>
               <TableHeader style={{ '--width': '5%', '--textAlign': 'center' } as React.CSSProperties}>
                 Acción
               </TableHeader>
@@ -181,7 +181,7 @@ export const UserManagement = () => {
                   </UserInfo>
                 </TableCell>
                 <TableCell style={{ '--width': '25%' } as React.CSSProperties}>{user.email}</TableCell>
-                <TableCell style={{ '--width': '25%' } as React.CSSProperties}>{user.module}</TableCell>
+                <TableCell style={{ '--width': '25%' } as React.CSSProperties}>{user.role}</TableCell>
                 <TableCell style={{ '--width': '5%', '--textAlign': 'center' } as React.CSSProperties}>
                   <ActionContainer>
                     <ActionButton

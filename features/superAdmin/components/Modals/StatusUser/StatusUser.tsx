@@ -55,8 +55,8 @@ export const StatusUserModal = ({
             }}
           >
             {status
-              ? 'Un usuario desactivado no podrá ingresar a la plataforma hasta ser activado '
-              : 'Los acceso y permisos del usuario estarán disponibles nuevamente. '}
+              ? 'Los acceso y permisos del usuario estarán disponibles nuevamente.'
+              : 'Un usuario desactivado no podrá ingresar a la plataforma hasta ser activado.'}
           </Text>
           <div
             style={{
