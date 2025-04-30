@@ -121,7 +121,7 @@ export const UserManagement = () => {
     <Container>
       <Header>
         <IconContainer>
-          <Icon icon="user-cog" size={24} />
+          <Icon icon="user-cog" size={24} color="#006A93"/>
         </IconContainer>
         <Title>Gestión de usuarios</Title>
       </Header>

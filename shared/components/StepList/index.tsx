@@ -3,7 +3,7 @@
 import Icon from '@/shared/containers/Icons';
 import Text from '@/shared/components/Text';
 
-import { Container, List, ListItem, ButtonBack, ButtonNext } from './styled';
+import { Container, List, ListItem, ButtonBack, ButtonNext, StepNumber, StepTitle } from './styled';
 
 type StepListProps = {
   setActiveStep: (value: number) => void;
@@ -24,23 +24,38 @@ export default function StepList(props: Readonly<StepListProps>) {
     <Container data-inmodal={inModal ? "true" : "false"}>
       <List>
         {steps.map((step, index) => (
-          <ListItem key={index}>
-
-            <ButtonBack
-              key={`${index}-back`}
-            className={activeStep == index ? 'active' : ''}
-            onClick={handleBack}
-            disabled={activeStep == 0 || activeStep != index}
-            type="button"
-            >
-            {index != 0 && activeStep == index && (
-              <Icon icon="chevron-left" size={24} />
+          <ListItem key={index} className={activeStep >= index ? 'active' : ''}>
+            {/* Back button - only visible for active step that isn't the first step */}
+            {index !== 0 && activeStep === index && (
+              <ButtonBack
+                onClick={handleBack}
+                disabled={activeStep === 0}
+                type="button"
+              >
+                <Icon icon="chevron-left" size={24} />
+              </ButtonBack>
             )}
-            <Text styleName="Feature Accent">{index + 1}</Text>
-          </ButtonBack>
+            
+            {/* Step number and title */}
+            <StepNumber>
+              <Text styleName="Feature Accent">{index + 1}</Text>
+            </StepNumber>
+            <StepTitle>
+              <Text styleName="Body Medium">{step}</Text>
+            </StepTitle>
+            
+            {/* Next button - only visible for active step that isn't the last step */}
+            {activeStep === index && index < steps.length - 1 && (
+              <ButtonNext
+                onClick={handleNext}
+                type="button"
+              >
+                <Icon icon="chevron-right" size={24} />
+              </ButtonNext>
+            )}
           </ListItem>
         ))}
-    </List>
-    </Container >
+      </List>
+    </Container>
   );
 }

@@ -14,7 +14,15 @@ export const Header = styled.div`
 
 export const IconContainer = styled.div`
   margin-right: 12px;
-  color: #0066cc;
+  color: #006A93;
+  width: 48px;
+  height: 48px;
+  background-color:#fbfbfb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
 `;
 
 export const Title = styled.h1`

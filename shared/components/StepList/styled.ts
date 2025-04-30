@@ -112,3 +112,31 @@ export const Circle = styled.div`
     color: white !important;
   }
 `;
+
+export const StepNumber = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(233, 240, 244, 1);
+  margin-right: 8px;
+  
+  .active & {
+    background-color: rgba(14, 93, 157, 1);
+  }
+  
+  .active & p {
+    color: white !important;
+  }
+`;
+
+export const StepTitle = styled.div`
+  display: flex;
+  align-items: center;
+  
+  .active & p {
+    font-weight: 600;
+  }
+`;

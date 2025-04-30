@@ -129,7 +129,7 @@ export const CustomersManagement = () => {
     <Container>
       <Header>
         <IconContainer>
-          <Icon icon="user-cog" size={24} />
+          <Icon icon="users" size={24} color="#006A93" />
         </IconContainer>
         <Title>Clientes</Title>
       </Header>
@@ -294,7 +294,9 @@ export const CustomersManagement = () => {
           color="#51BB51"
           variant="primary"
           style={{ backgroundColor: '#51BB51' }}
-          onClick={() => router.push('/admin/customerManagement/createCustomer')}
+          onClick={() =>
+            router.push('/admin/customerManagement/createCustomer')
+          }
         >
           <Icon icon="plus" size={18} color="#fff" />
           Crear cliente
