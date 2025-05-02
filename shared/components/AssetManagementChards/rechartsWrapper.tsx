@@ -9,13 +9,17 @@ import {
   Tooltip,
   Legend,
   CartesianGrid,
+  LabelList,
 } from 'recharts';
 
 interface RechartsComponentProps {
-  type: 'vertical-bar' | 'horizontal-bar' | 'pie';
+  type: 'vertical-bar' | 'horizontal-bar' | 'pie' | 'custom-label-bar';
   data: any[];
   width?: number;
   height: number;
+  yDataKey?: string;
+  labelDataKey?: string;
+  colors?: string[];
 }
 
 const RechartsComponent = ({
@@ -23,6 +27,9 @@ const RechartsComponent = ({
   data,
   width,
   height,
+  yDataKey = 'valor',
+  labelDataKey = 'categoria',
+  colors = ['#8884d8'],
 }: RechartsComponentProps) => {
   if (type === 'vertical-bar') {
     return (
@@ -44,6 +51,52 @@ const RechartsComponent = ({
         <Tooltip />
         <Legend />
         <Bar dataKey="valor" fill="#8884d8" radius={5} />
+      </BarChart>
+    );
+  }
+
+  if (type === 'custom-label-bar') {
+    return (
+      <BarChart
+        {...(width ? { width } : {})}
+        height={height}
+        data={data}
+        layout="vertical"
+        margin={{
+          top: 20,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid horizontal={false} />
+        <YAxis
+          dataKey={labelDataKey}
+          type="category"
+          tickLine={false}
+          tickMargin={10}
+          axisLine={false}
+          tickFormatter={(value) => value.slice(0, 3)}
+          hide
+        />
+        <XAxis dataKey={yDataKey} type="number" hide />
+        <Tooltip cursor={false} />
+        <Bar dataKey={yDataKey} fill={colors[0]} radius={4}>
+          <LabelList
+            dataKey={labelDataKey}
+            position="insideLeft"
+            offset={8}
+            fill="#ffffff"
+            fontSize={12}
+          />
+          <LabelList
+            dataKey={yDataKey}
+            position="right"
+            offset={8}
+            fill="#333333"
+            fontSize={12}
+          />
+        </Bar>
       </BarChart>
     );
   }

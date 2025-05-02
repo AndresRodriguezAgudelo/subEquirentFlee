@@ -1,8 +1,8 @@
 // Función para verificar credenciales directamente
 export const verifyCredentials = (username: string, password: string) => {
   if (
-    (username === 'admin' && password === '123123') ||
-    (username === 'client' && password === '123123')
+    (username === 'admin' && password === 'admin123') ||
+    (username === 'client' && password === 'client123')
   ) {
     return {
       success: true,
