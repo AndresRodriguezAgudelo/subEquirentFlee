@@ -19,7 +19,7 @@ import { TrendingUp } from 'lucide-react';
 const RechartsComponent2 = dynamic(
   () =>
     import(
-      '../../../features/superAdmin/components/AssetManagementChardsHomeAdmin/rechartsWrapper'
+      '../../../features/superAdmin/components/AssetManagementChardsHomeAdmin/RechartsWrapper'
     ),
   {
     ssr: false,

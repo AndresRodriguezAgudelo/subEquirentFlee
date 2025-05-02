@@ -27,7 +27,7 @@ import { Pencil, X } from 'lucide-react';
 import StrictModeDroppable from './StrictModeDroppable';
 
 // Importar el componente completo de recharts de forma dinámica
-const RechartsComponent = dynamic(() => import('./rechartsWrapper'), {
+const RechartsComponent = dynamic(() => import('./RechartsWrapper'), {
   ssr: false,
 });
 
