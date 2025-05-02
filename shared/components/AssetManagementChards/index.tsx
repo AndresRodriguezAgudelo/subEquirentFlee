@@ -16,10 +16,15 @@ import {
 } from './styled';
 import { TrendingUp } from 'lucide-react';
 
-// Importar el componente completo de recharts de forma dinámica
-const RechartsComponent = dynamic(() => import('./rechartsWrapper'), {
-  ssr: false,
-});
+const RechartsComponent2 = dynamic(
+  () =>
+    import(
+      '../../../features/superAdmin/components/AssetManagementChardsHomeAdmin/RechartsWrapper'
+    ),
+  {
+    ssr: false,
+  }
+);
 
 import {
   Card,
@@ -52,14 +57,32 @@ export default function AssetManagementChards({
   }, []);
 
   const [selectedTime, setSelectedTime] = useState<string>('2024-1');
-  const [selectedStatus, setSelectedStatus] = useState<string>('actual');
+  const [selectedStatus, setSelectedStatus] = useState<
+    'actual' | 'mensual' | 'trimestral'
+  >('actual');
   const [selectedDistribution, setSelectedDistribution] =
     useState<string>('2024-01');
 
+  // Tipo específico para las opciones de estado
+  type StatusOption = 'actual' | 'mensual' | 'trimestral';
+
+  // Función genérica para manejo de cambios en selects
   const handleSelectChange =
-    (setter: (value: string) => void) => (option: SelectOption) => {
-      setter(option.value);
+    <T extends string>(setter: (value: T) => void) =>
+    (option: SelectOption) => {
+      setter(option.value as T);
     };
+
+  // Función específica para el select de estado
+  const handleStatusChange = (option: SelectOption) => {
+    if (
+      option.value === 'actual' ||
+      option.value === 'mensual' ||
+      option.value === 'trimestral'
+    ) {
+      setSelectedStatus(option.value);
+    }
+  };
 
   const verticalChartData = useMemo(() => {
     return (
@@ -68,14 +91,6 @@ export default function AssetManagementChards({
       ] || testData.chartDataBySemester['2024-1']
     );
   }, [selectedTime]);
-
-  const pieChartData = useMemo(() => {
-    return (
-      testData.pieChartDataByStatus[
-        selectedStatus as keyof typeof testData.pieChartDataByStatus
-      ] || testData.pieChartDataByStatus['actual']
-    );
-  }, [selectedStatus]);
 
   const horizontalChartData = useMemo(() => {
     return (
@@ -127,10 +142,13 @@ export default function AssetManagementChards({
             <CardContent>
               {isClient && (
                 <ResponsiveContainer width="100%" height={300}>
-                  <RechartsComponent
-                    type="vertical-bar"
+                  <RechartsComponent2
+                    type="custom-label-bar"
                     data={verticalChartData}
                     height={300}
+                    yDataKey="valor"
+                    labelDataKey="categoria"
+                    colors={['#A1A1A1']}
                   />
                 </ResponsiveContainer>
               )}
@@ -161,7 +179,7 @@ export default function AssetManagementChards({
                     addNewVariable={false}
                     optionSelect={testData.options.statusOptions}
                     value={selectedStatus}
-                    onChangeSelect={handleSelectChange(setSelectedStatus)}
+                    onChangeSelect={handleStatusChange}
                   />
                 </SelectContainer>
               </HeaderContent>
@@ -169,10 +187,13 @@ export default function AssetManagementChards({
             <CardContent>
               {isClient && (
                 <ResponsiveContainer width="100%" height={300}>
-                  <RechartsComponent
-                    type="pie"
-                    data={pieChartData}
+                  <RechartsComponent2
+                    type="stacked-area"
+                    data={testData.stackedAreaDataByStatus[selectedStatus]}
                     height={300}
+                    xDataKey="mes"
+                    stackedDataKeys={['Añadidos', 'Eliminados']}
+                    colors={['#2A9D90', '#E76E50']}
                   />
                 </ResponsiveContainer>
               )}
@@ -207,9 +228,12 @@ export default function AssetManagementChards({
             <CardContent>
               {isClient && (
                 <ResponsiveContainer width="100%" height={300}>
-                  <RechartsComponent
-                    type="horizontal-bar"
-                    data={horizontalChartData}
+                  <RechartsComponent2
+                    type="stacked-bar"
+                    data={testData.stackedBarData}
+                    xDataKey="mes"
+                    stackedDataKeys={['Sin administrar', 'Administrados']}
+                    colors={['#0E5D9D', '#B3DDED']}
                     height={300}
                   />
                 </ResponsiveContainer>

@@ -1,68 +1,100 @@
 {
   "chartDataBySemester": {
     "2024-1": [
-      { "mes": "Ene", "valor": 12500 },
-      { "mes": "Feb", "valor": 15000 },
-      { "mes": "Mar", "valor": 18500 },
-      { "mes": "Abr", "valor": 22000 },
-      { "mes": "May", "valor": 25000 },
-      { "mes": "Jun", "valor": 28000 }
+      { "categoria": "Disponible", "valor": 850, "fill": "#A1A1A1" },
+      { "categoria": "Alistamiento", "valor": 650, "fill": "#A1A1A1" },
+      { "categoria": "Taller", "valor": 450, "fill": "#A1A1A1" },
+      { "categoria": "Siniestro", "valor": 250, "fill": "#A1A1A1" },
+      { "categoria": "Patios", "valor": 250, "fill": "#A1A1A1" },
+      { "categoria": "Vendidos", "valor": 250, "fill": "#A1A1A1" }
     ],
     "2023-2": [
-      { "mes": "Jul", "valor": 8000 },
-      { "mes": "Ago", "valor": 9500 },
-      { "mes": "Sep", "valor": 11000 },
-      { "mes": "Oct", "valor": 13500 },
-      { "mes": "Nov", "valor": 15000 },
-      { "mes": "Dic", "valor": 17000 }
+      { "categoria": "Disponible", "valor": 600, "fill": "#A1A1A1" },
+      { "categoria": "Alistamiento", "valor": 400, "fill": "#A1A1A1" },
+      { "categoria": "Taller", "valor": 300, "fill": "#A1A1A1" },
+      { "categoria": "Siniestro", "valor": 150, "fill": "#A1A1A1" },
+      { "categoria": "Patios", "valor": 150, "fill": "#A1A1A1" },
+      { "categoria": "Vendidos", "valor": 350, "fill": "#A1A1A1" }
     ],
     "2023-1": [
-      { "mes": "Ene", "valor": 5000 },
-      { "mes": "Feb", "valor": 6500 },
-      { "mes": "Mar", "valor": 8000 },
-      { "mes": "Abr", "valor": 9500 },
-      { "mes": "May", "valor": 11000 },
-      { "mes": "Jun", "valor": 12500 }
-    ]
-  },
-  "pieChartDataByStatus": {
-    "actual": [
-      { "name": "Activos Nuevos", "value": 1200, "fill": "#0088FE" },
-      { "name": "Activos Usados", "value": 800, "fill": "#00C49F" },
-      { "name": "En Mantenimiento", "value": 400, "fill": "#FFBB28" },
-      { "name": "Dados de Baja", "value": 200, "fill": "#FF8042" }
-    ],
-    "mensual": [
-      { "name": "Activos Nuevos", "value": 300, "fill": "#0088FE" },
-      { "name": "Activos Usados", "value": 450, "fill": "#00C49F" },
-      { "name": "En Mantenimiento", "value": 150, "fill": "#FFBB28" },
-      { "name": "Dados de Baja", "value": 50, "fill": "#FF8042" }
-    ],
-    "trimestral": [
-      { "name": "Activos Nuevos", "value": 2500, "fill": "#0088FE" },
-      { "name": "Activos Usados", "value": 1800, "fill": "#00C49F" },
-      { "name": "En Mantenimiento", "value": 900, "fill": "#FFBB28" },
-      { "name": "Dados de Baja", "value": 400, "fill": "#FF8042" }
+      { "categoria": "Disponible", "valor": 400, "fill": "#A1A1A1" },
+      { "categoria": "Alistamiento", "valor": 250, "fill": "#A1A1A1" },
+      { "categoria": "Taller", "valor": 200, "fill": "#A1A1A1" },
+      { "categoria": "Siniestro", "valor": 100, "fill": "#A1A1A1" },
+      { "categoria": "Patios", "valor": 100, "fill": "#A1A1A1" },
+      { "categoria": "Vendidos", "valor": 100, "fill": "#A1A1A1" }
     ]
   },
   "horizontalChartDataByMonth": {
     "2024-01": [
-      { "categoria": "Equipos", "valor": 850, "fill": "hsl(var(--chart-1))" },
-      { "categoria": "Vehículos", "valor": 650, "fill": "hsl(var(--chart-2))" },
-      { "categoria": "Inmuebles", "valor": 450, "fill": "hsl(var(--chart-3))" },
-      { "categoria": "Otros", "valor": 250, "fill": "hsl(var(--chart-4))" }
+      {
+        "categoria": "Sin administrar",
+        "valor": 650,
+        "fill": "hsl(var(--chart-2))"
+      },
+      {
+        "categoria": "Administrados",
+        "valor": 850,
+        "fill": "hsl(var(--chart-1))"
+      }
     ],
     "2023-12": [
-      { "categoria": "Equipos", "valor": 600, "fill": "hsl(var(--chart-1))" },
-      { "categoria": "Vehículos", "valor": 400, "fill": "hsl(var(--chart-2))" },
-      { "categoria": "Inmuebles", "valor": 300, "fill": "hsl(var(--chart-3))" },
-      { "categoria": "Otros", "valor": 150, "fill": "hsl(var(--chart-4))" }
+      {
+        "categoria": "Sin administrar",
+        "valor": 400,
+        "fill": "hsl(var(--chart-2))"
+      },
+      {
+        "categoria": "Administrados",
+        "valor": 600,
+        "fill": "hsl(var(--chart-1))"
+      }
     ],
     "2023-11": [
-      { "categoria": "Equipos", "valor": 400, "fill": "hsl(var(--chart-1))" },
-      { "categoria": "Vehículos", "valor": 250, "fill": "hsl(var(--chart-2))" },
-      { "categoria": "Inmuebles", "valor": 200, "fill": "hsl(var(--chart-3))" },
-      { "categoria": "Otros", "valor": 100, "fill": "hsl(var(--chart-4))" }
+      {
+        "categoria": "Sin administrar",
+        "valor": 250,
+        "fill": "hsl(var(--chart-2))"
+      },
+      {
+        "categoria": "Administrados",
+        "valor": 400,
+        "fill": "hsl(var(--chart-1))"
+      }
+    ]
+  },
+  "stackedBarData": [
+    { "mes": "Enero", "Sin administrar": 180, "Administrados": 70 },
+    { "mes": "Feb", "Sin administrar": 220, "Administrados": 180 },
+    { "mes": "Mar", "Sin administrar": 250, "Administrados": 110 },
+    { "mes": "Apr", "Sin administrar": 170, "Administrados": 80 },
+    { "mes": "May", "Sin administrar": 200, "Administrados": 100 },
+    { "mes": "Jun", "Sin administrar": 220, "Administrados": 110 }
+  ],
+  "stackedAreaDataByStatus": {
+    "actual": [
+      { "mes": "Ene", "Añadidos": 85, "Eliminados": 45 },
+      { "mes": "Feb", "Añadidos": 92, "Eliminados": 38 },
+      { "mes": "Mar", "Añadidos": 78, "Eliminados": 50 },
+      { "mes": "Abr", "Añadidos": 110, "Eliminados": 65 },
+      { "mes": "May", "Añadidos": 95, "Eliminados": 52 },
+      { "mes": "Jun", "Añadidos": 115, "Eliminados": 48 }
+    ],
+    "mensual": [
+      { "mes": "Ene", "Añadidos": 45, "Eliminados": 25 },
+      { "mes": "Feb", "Añadidos": 52, "Eliminados": 28 },
+      { "mes": "Mar", "Añadidos": 48, "Eliminados": 30 },
+      { "mes": "Abr", "Añadidos": 70, "Eliminados": 35 },
+      { "mes": "May", "Añadidos": 65, "Eliminados": 32 },
+      { "mes": "Jun", "Añadidos": 75, "Eliminados": 38 }
+    ],
+    "trimestral": [
+      { "mes": "Ene", "Añadidos": 125, "Eliminados": 85 },
+      { "mes": "Feb", "Añadidos": 142, "Eliminados": 78 },
+      { "mes": "Mar", "Añadidos": 118, "Eliminados": 90 },
+      { "mes": "Abr", "Añadidos": 150, "Eliminados": 95 },
+      { "mes": "May", "Añadidos": 135, "Eliminados": 92 },
+      { "mes": "Jun", "Añadidos": 155, "Eliminados": 88 }
     ]
   },
   "options": {
